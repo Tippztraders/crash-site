@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tippz Cash Traders</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <header id="home">
+    <div class="logo-section">
+      <h1 class="stroked-text">Tippz Cash Traders</h1>
+      <img src="Logo.jpeg" alt="Logo" class="logo-img"/>
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <button><i class="fas fa-search"></i></button>
+    </div>
+    <nav>
+      <ul class="nav-row">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#featured">Products</a></li>
+        <li><a href="#donations">Donations</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Quality Pre-owned Items at Great Prices.</h2>
+      <p>Discover amazing deals on carefully selected second-hand products.</p>
+      <a href="#item3" class="cta-button">Shop Now</a>
+    </section>
+
+    <section class="featured" id="featured">
+      <h3>Featured Products</h3>
+      <div class="product-grid">
+  <script>
+    const products = [
+      { img: "PH 1.jpg", name: "White Office Chair", price: "N$850", condition: "Excellent Condition" },
+      { img: "PH 2.jpg", name: "32L Samgung Microwave", price: "N$950", condition: "Pre-Loved" },
+      { img: "PH 3.jpg", name: "Electrical Frying Pan", price: "N$450", condition: "Pre-Loved" },
+      { img: "PH 4.jpg", name: "Traditional Pot #3", price: "N$350", condition: "Showroom Quality" },
+      { img: "PH 5.jpg", name: "Traditional Pot #2", price: "N$250", condition: "Showroom Quality" },
+      { img: "PH 6.jpg", name: "32L Samgung Microwave", price: "N$1250", condition: "Trendsetter" },
+      { img: "PH 7.jpg", name: "Office Chair #3", price: "N$750", condition: "Well-Maintained" },
+      { img: "PH 8.jpg", name: "Office Chair #1", price: "N$650", condition: "Well-Maintained" },
+      { img: "PH 9.jpg", name: "Kitchen Sink", price: "N$1250", condition: "Well-Maintained" },
+      { img: "PH 10.jpg", name: "Assorted Fabric", price: "N$20 per meter", condition: "Excellent Condition" },
+    ];
+
+    document.write(products.map((product, i) => `
+      <div class="product-card" id="item${i+1}">
+        <img src="${product.img}" alt="${product.name}" onclick="enlargeImage(this)" />
+        <h4>${product.name}</h4>
+        <p class="price">${product.price}</p>
+        <span class="condition faded-badge">${product.condition}</span>
+        <p class="status">In Stock</p>
+        <div class="like-section">
+          <i class="fas fa-heart" onclick="toggleLike(this)"></i> <span class="like-count">0</span>
+        </div>
+        <a href="https://wa.me/264817859603" target="_blank" class="whatsapp-button">
+          <i class="fab fa-whatsapp"></i> WhatsApp Seller
+        </a>
+      </div>
+    `).join(''));
+  </script>
+</div>
+    
+    <section id="donations" class="donations">
+      <h3>Donations Section</h3>
+      <p>Support our mission by donating usable items."Making a Difference with Simple Acts of Kindness".</p>
+    </section>
+  </main>
+
+<section class="donation-gallery" style="max-width: 600px; margin: 2em auto;">
+  <div class="donation-grid">
+    <div class="donation-item">
+      <img src="donation1.jpg" alt="Donation Item 1" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
+      <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
+    </div>
+    <div class="donation-item">
+      <img src="donation2.jpg" alt="Donation Item 2" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
+      <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
+    </div>
+    <div class="donation-item">
+      <img src="donation3.jpg" alt="Donation Item 3" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
+      <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
+    </div>
+    <div class="donation-item">
+      <img src="donation4.jpg" alt="Donation Item 4" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
+      <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .donation-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+  }
+</style>
+
+<script>
+  function enlargeImage(img) {
+    window.open(img.src, '_blank');
+  }
+</script>
+
+  <footer id="contact">
+    <div class="footer-section about" id="about">
+      <h4>About Tippz Cash Traders</h4>
+      <p>We're dedicated to giving quality items a second chance while helping you save money and reduce waste.</p>
+    </div>
+    <div class="footer-section links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#featured">Products</a></li>
+        <li><a href="#donations">Our Donation Section</a></li>
+        <li>About Us</li>
+      </ul>
+    </div>
+    <div class="footer-section contact">
+      <h4>Contact Info</h4>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:tippzcashtraders@gmail.com">tippzcashtraders@gmail.com</a></p>
+      <p><i class="fas fa-phone"></i> <a href="tel:+264817859603">+264817859603</a></p>
+    </div>
+    <div class="footer-section social">
+      <h4>Follow Us</h4>
+      <p><a href="https://www.facebook.com/share/1CRCKL5zVH/" target="_blank">Facebook</a></p>
+    </div>
+    <hr />
+    <p class="copyright">© 2025 Tippz Cash Traders. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleLike(icon) {
+      const count = icon.nextElementSibling;
+      let number = parseInt(count.textContent);
+      icon.classList.toggle('liked');
+      count.textContent = icon.classList.contains('liked') ? number + 1 : number - 1;
+    }
+
+    function enlargeImage(img) {
+      window.open(img.src, '_blank');
+    }
+  </script>
+</body>
+</html>
