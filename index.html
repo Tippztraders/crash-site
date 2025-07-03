@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    /* Main layout styles */
     .product-grid {
       display: grid;
       gap: 20px;
@@ -69,92 +68,90 @@
       <div class="product-grid"></div>
 
       <script>
-  const products = [
-    { img: "PH1.jpg", name: "White Office Chair", price: "N$850", condition: "Excellent Condition" },
-    { img: ["PH10a.jpg", "PH10b.jpg"], name: "2x Event Table Combo", price: "N$2,150 for Both", condition: "Pre-Loved" },
-  ];
+        const products = [
+          { img: "PH1.jpg", name: "White Office Chair", price: "N$850", condition: "Excellent Condition" },
+          { img: ["PH10a.jpg", "PH10b.jpg"], name: "2x Event Table Combo", price: "N$2,150 for Both", condition: "Pre-Loved" },
+        ];
 
-  const grid = document.querySelector(".product-grid");
+        const grid = document.querySelector(".product-grid");
 
-  products.forEach(product => {
-    const productDiv = document.createElement("div");
-    productDiv.className = "product";
+        products.forEach(product => {
+          const productDiv = document.createElement("div");
+          productDiv.className = "product";
 
-    // Prepare image carousel
-    const imageList = Array.isArray(product.img) ? product.img : [product.img];
-    let currentIndex = 0;
+          const imageList = Array.isArray(product.img) ? product.img : [product.img];
+          let currentIndex = 0;
 
-    const imageContainer = document.createElement("div");
-    imageContainer.className = "carousel";
+          const imageContainer = document.createElement("div");
+          imageContainer.className = "carousel";
 
-    const imgElement = document.createElement("img");
-    imgElement.src = imageList[currentIndex];
-    imgElement.alt = product.name;
-    imageContainer.appendChild(imgElement);
+          const imgElement = document.createElement("img");
+          imgElement.src = imageList[currentIndex];
+          imgElement.alt = product.name;
+          imageContainer.appendChild(imgElement);
 
-    // Swipe support
-    let startX = 0;
-    imageContainer.addEventListener("touchstart", e => {
-      startX = e.touches[0].clientX;
-    });
+          let startX = 0;
+          imageContainer.addEventListener("touchstart", e => {
+            startX = e.touches[0].clientX;
+          });
 
-    imageContainer.addEventListener("touchend", e => {
-      const endX = e.changedTouches[0].clientX;
-      const diff = endX - startX;
+          imageContainer.addEventListener("touchend", e => {
+            const endX = e.changedTouches[0].clientX;
+            const diff = endX - startX;
 
-      if (Math.abs(diff) > 30 && imageList.length > 1) {
-        currentIndex = (diff < 0)
-          ? (currentIndex + 1) % imageList.length
-          : (currentIndex - 1 + imageList.length) % imageList.length;
+            if (Math.abs(diff) > 30 && imageList.length > 1) {
+              currentIndex = (diff < 0)
+                ? (currentIndex + 1) % imageList.length
+                : (currentIndex - 1 + imageList.length) % imageList.length;
 
-        imgElement.src = imageList[currentIndex];
-      }
-    });
+              imgElement.src = imageList[currentIndex];
+            }
+          });
 
-    productDiv.appendChild(imageContainer);
+          productDiv.appendChild(imageContainer);
 
-    // Product info
-    const name = document.createElement("h4");
-    name.textContent = product.name;
+          const name = document.createElement("h4");
+          name.textContent = product.name;
 
-    const price = document.createElement("p");
-    price.textContent = product.price;
+          const price = document.createElement("p");
+          price.textContent = product.price;
 
-    const condition = document.createElement("p");
-    condition.textContent = product.condition;
+          const condition = document.createElement("p");
+          condition.textContent = product.condition;
 
-    productDiv.appendChild(name);
-    productDiv.appendChild(price);
-    productDiv.appendChild(condition);
+          productDiv.appendChild(name);
+          productDiv.appendChild(price);
+          productDiv.appendChild(condition);
 
-    grid.appendChild(productDiv);
-  });
-</script>
+          grid.appendChild(productDiv);
+        });
+      </script>
 
-    <section id="donations" class="donations">
-      <h3>Donations Section</h3>
-      <p>Support our mission by donating usable items. "Making a Difference with Simple Acts of Kindness".</p>
-    </section>
+      <section id="donations" class="donations">
+        <h3>Donations Section</h3>
+        <p>Support our mission by donating usable items. "Making a Difference with Simple Acts of Kindness".</p>
+      </section>
 
-    <section class="donation-gallery" style="max-width: 600px; margin: 2em auto;">
-      <div class="donation-grid">
-        <div class="donation-item">
-          <img src="don1.jpg" alt="Donation Item 1" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
-          <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
+      <section class="donation-gallery" style="max-width: 600px; margin: 2em auto;">
+        <div class="donation-grid">
+          <div class="donation-item">
+            <img src="don1.jpg" alt="Donation Item 1" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
+            <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
+          </div>
+          <div class="donation-item">
+            <img src="don2.jpg" alt="Donation Item 2" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
+            <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
+          </div>
+          <div class="donation-item">
+            <img src="don3.jpg" alt="Donation Item 3" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
+            <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
+          </div>
+          <div class="donation-item">
+            <img src="don4.jpg" alt="Donation Item 4" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
+            <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
+          </div>
         </div>
-        <div class="donation-item">
-          <img src="don2.jpg" alt="Donation Item 2" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
-          <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
-        </div>
-        <div class="donation-item">
-          <img src="don3.jpg" alt="Donation Item 3" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
-          <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
-        </div>
-        <div class="donation-item">
-          <img src="don4.jpg" alt="Donation Item 4" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
-          <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
-        </div>
-      </div>
+      </section>
     </section>
   </main>
 
@@ -197,45 +194,5 @@
       window.open(img.src, '_blank');
     }
   </script>
-
-<div class="slider">
-  <img src="PH10a.jpg" class="slide" style="display: block;">
-  <img src="PH10b.jpg" class="slide" style="display: none;">
-</div>
-
-<script>
-  let current = 0;
-  const slides = document.querySelectorAll('.slide');
-  let startX = 0;
-
-  const showSlide = (index) => {
-    slides.forEach((slide, i) => {
-      slide.style.display = (i === index) ? 'block' : 'none';
-    });
-  };
-
-  const slider = document.querySelector('.slider');
-
-  slider.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-  });
-
-  slider.addEventListener('touchend', (e) => {
-    let endX = e.changedTouches[0].clientX;
-    let diffX = endX - startX;
-
-    if (Math.abs(diffX) > 50) { // minimum swipe distance
-      if (diffX < 0) {
-        // swipe left → next slide
-        current = (current + 1) % slides.length;
-      } else {
-        // swipe right → previous slide
-        current = (current - 1 + slides.length) % slides.length;
-      }
-      showSlide(current);
-    }
-  });
-</script>
-  
 </body>
 </html>
