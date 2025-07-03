@@ -197,5 +197,45 @@
       window.open(img.src, '_blank');
     }
   </script>
+
+<div class="slider">
+  <img src="PH10a.jpg" class="slide" style="display: block;">
+  <img src="PH10b.jpg" class="slide" style="display: none;">
+</div>
+
+<script>
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+  let startX = 0;
+
+  const showSlide = (index) => {
+    slides.forEach((slide, i) => {
+      slide.style.display = (i === index) ? 'block' : 'none';
+    });
+  };
+
+  const slider = document.querySelector('.slider');
+
+  slider.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+  });
+
+  slider.addEventListener('touchend', (e) => {
+    let endX = e.changedTouches[0].clientX;
+    let diffX = endX - startX;
+
+    if (Math.abs(diffX) > 50) { // minimum swipe distance
+      if (diffX < 0) {
+        // swipe left → next slide
+        current = (current + 1) % slides.length;
+      } else {
+        // swipe right → previous slide
+        current = (current - 1 + slides.length) % slides.length;
+      }
+      showSlide(current);
+    }
+  });
+</script>
+  
 </body>
 </html>
