@@ -97,7 +97,7 @@ header {
   padding: 1rem;
 }
 
-.product {
+.product-card {
   background: white;
   border: 1px solid #ccc;
   padding: 1em;
@@ -106,17 +106,18 @@ header {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.carousel img {
+.product-card img {
   width: 100%;
   height: auto;
   border-radius: 8px;
-  touch-action: pan-y;
   cursor: pointer;
 }
 
+/* Product Details */
 .price {
   font-weight: bold;
   margin-top: 0.5em;
+  color: green;
 }
 
 .faded-badge {
@@ -161,6 +162,10 @@ header {
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
+}
+
+.whatsapp-button:hover {
+  background: darkgreen;
 }
 
 /* Donation Section */
@@ -217,6 +222,13 @@ footer a {
   text-decoration: none;
 }
 
+footer hr {
+  margin-top: 2em;
+  border: 0;
+  border-top: 1px solid #444;
+}
+
+/* Carousel Support (if added later) */
 .carousel {
   position: relative;
   overflow: hidden;
@@ -230,11 +242,4 @@ footer a {
   transition: transform 0.3s ease;
   touch-action: pan-y;
   border-radius: 8px;
-}
-
-
-footer hr {
-  margin-top: 2em;
-  border: 0;
-  border-top: 1px solid #444;
 }
