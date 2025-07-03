@@ -37,70 +37,70 @@
     <section class="featured" id="featured">
       <h3>Featured Products</h3>
       <div class="product-grid">
-  <script>
-    const products = [
-      { img: "PH6.jpg", name: "32L Microwave", price: "N$1,250", condition: "Excellent Condition" },
-      { img: "PH10a.jpg", name: "2x Event Table Combo", price: "N$2,150 for Both", condition: "Pre-Loved" },
-    ];
-
-    document.write(products.map((product, i) => `
-      <div class="product-card" id="item${i+1}">
-        <img src="${product.img}" alt="${product.name}" onclick="enlargeImage(this)" />
-        <h4>${product.name}</h4>
-        <p class="price">${product.price}</p>
-        <span class="condition faded-badge">${product.condition}</span>
-        <p class="status">In Stock</p>
-        <div class="like-section">
-          <i class="fas fa-heart" onclick="toggleLike(this)"></i> <span class="like-count">0</span>
+        <div class="product-card" id="item1">
+          <img src="PH6.jpg" alt="32L Microwave" onclick="enlargeImage(this)" />
+          <h4>32L Microwave</h4>
+          <p class="price">N$1,250</p>
+          <span class="condition faded-badge">Excellent Condition</span>
+          <p class="status">In Stock</p>
+          <div class="like-section">
+            <i class="fas fa-heart" onclick="toggleLike(this)"></i> <span class="like-count">0</span>
+          </div>
+          <a href="https://wa.me/264817859603" target="_blank" class="whatsapp-button">
+            <i class="fab fa-whatsapp"></i> WhatsApp Seller
+          </a>
         </div>
-        <a href="https://wa.me/264817859603" target="_blank" class="whatsapp-button">
-          <i class="fab fa-whatsapp"></i> WhatsApp Seller
-        </a>
+
+        <div class="product-card" id="item2">
+          <img src="PH10a.jpg" alt="2x Event Table Combo" onclick="enlargeImage(this)" />
+          <h4>2x Event Table Combo</h4>
+          <p class="price">N$2,150 for Both</p>
+          <span class="condition faded-badge">Pre-Loved</span>
+          <p class="status">In Stock</p>
+          <div class="like-section">
+            <i class="fas fa-heart" onclick="toggleLike(this)"></i> <span class="like-count">0</span>
+          </div>
+          <a href="https://wa.me/264817859603" target="_blank" class="whatsapp-button">
+            <i class="fab fa-whatsapp"></i> WhatsApp Seller
+          </a>
+        </div>
       </div>
-    `).join(''));
-  </script>
-</div>
-    
+    </section>
+
     <section id="donations" class="donations">
       <h3>Donations Section</h3>
       <p>Support our mission by donating usable items."Making a Difference with Simple Acts of Kindness".</p>
     </section>
   </main>
 
-<section class="donation-gallery" style="max-width: 600px; margin: 2em auto;">
-  <div class="donation-grid">
-    <div class="donation-item">
-      <img src="donation1.jpg" alt="Donation Item 1" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
-      <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
+  <section class="donation-gallery" style="max-width: 600px; margin: 2em auto;">
+    <div class="donation-grid">
+      <div class="donation-item">
+        <img src="donation1.jpg" alt="Donation Item 1" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
+        <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
+      </div>
+      <div class="donation-item">
+        <img src="donation2.jpg" alt="Donation Item 2" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
+        <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
+      </div>
+      <div class="donation-item">
+        <img src="donation3.jpg" alt="Donation Item 3" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
+        <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
+      </div>
+      <div class="donation-item">
+        <img src="donation4.jpg" alt="Donation Item 4" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
+        <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
+      </div>
     </div>
-    <div class="donation-item">
-      <img src="donation2.jpg" alt="Donation Item 2" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
-      <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
-    </div>
-    <div class="donation-item">
-      <img src="donation3.jpg" alt="Donation Item 3" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
-      <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
-    </div>
-    <div class="donation-item">
-      <img src="donation4.jpg" alt="Donation Item 4" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
-      <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<style>
-  .donation-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1em;
-  }
-</style>
-
-<script>
-  function enlargeImage(img) {
-    window.open(img.src, '_blank');
-  }
-</script>
+  <style>
+    .donation-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1em;
+    }
+  </style>
 
   <footer id="contact">
     <div class="footer-section about" id="about">
