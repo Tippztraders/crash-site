@@ -1,215 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KABOOM CRASH</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mobile Image Slider + Fullscreen Zoom</title>
   <style>
-    .carousel-container {
-      width: 100%;
+    body { margin: 0; font-family: Arial, sans-serif; background: #000; color: #fff; }
+    .slider { position: relative; width: 100%; max-width: 600px; margin: 2em auto; overflow: hidden; }
+    .slides { display: flex; transition: transform 0.4s ease; touch-action: pan-y; }
+    .slides img { width: 100%; display: block; cursor: pointer; }
+    .fullscreen {
+      display: none;
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center; align-items: center;
       overflow: hidden;
-      position: relative;
     }
-    .carousel-slide {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
-    .carousel-item {
-      min-width: 100%;
-      box-sizing: border-box;
-    }
-    .carousel-item img {
-      width: 100%;
-      display: block;
-      cursor: pointer;
-    }
-    .carousel-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 2rem;
-      background: rgba(0, 0, 0, 0.5);
-      color: white;
-      padding: 0.5rem;
-      border: none;
-      cursor: pointer;
-      z-index: 2;
-    }
-    .carousel-arrow.left {
-      left: 10px;
-    }
-    .carousel-arrow.right {
-      right: 10px;
-    }
+    .fullscreen img { max-width: 100%; max-height: 100%; cursor: grab; }
   </style>
 </head>
 <body>
-  <header id="home">
-    <div class="logo-section">
-    <h1 class="stroked-text">KABOOM CRASH</h1><img src="Logo.jpeg" alt="Logo" class="logo-img"></div>
-    <div class="search-bar">
-      <input type="text" placeholder="Search...">
+
+  <!-- Main slider -->
+  <div class="slider" id="mainSlider">
+    <div class="slides">
+      <img src="image1.jpg" alt="Slide 1">
+      <img src="image2.jpg" alt="Slide 2">
+      <img src="image3.jpg" alt="Slide 3">
     </div>
-    <nav>
-      <ul class="nav-row">
-        <li>
-          <a href="#home">Home</a>
-        </li>
-        <li>
-          <a href="#featured">Products</a>
-        </li>
-        <li>
-          <a href="#donations">Donations</a>
-        </li>
-        <li>
-          <a href="#about">About</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-  <main>
-    <section class="hero">
-      <h2>Quality Pre-owned Items at Great Prices.</h2>
-      <p>Discover amazing deals on carefully selected second-hand products.</p><a href="#featured" class="cta-button">Shop Now</a>
-    </section>
-    <section class="featured" id="featured">
-      <h3>Featured Products</h3>
-      <div class="product-grid">
-        <div class="product">
-          <div class="carousel-container">
-            <div class="carousel-slide">
-              <div class="carousel-item"><img src="image1.jpg" alt="Electrical Frying Pan 1" onclick="enlargeImage(this)"></div>
-              <div class="carousel-item"><img src="image2.jpg" alt="Electrical Frying Pan 2" onclick="enlargeImage(this)"></div>
-              <div class="carousel-item"><img src="image3.jpg" alt="Electrical Frying Pan 3" onclick="enlargeImage(this)"></div>
-            </div><button class="carousel-arrow left">❮</button> <button class="carousel-arrow right">❯</button>
-          </div>
-          <h4>2x Event Table Combo</h4>
-          <p>N$2,150 for Both</p>
-          <p>Pre-Loved</p>
-        </div>
-        <div class="product">
-          <img src="PH1.jpg" alt="White Office Chair" onclick="enlargeImage(this)">
-          <h4>White Office Chair</h4>
-          <p>N$850</p>
-          <p>Excellent Condition</p>
-        </div>
-      </div>
-      <script>
-        document.querySelectorAll('.carousel-container').forEach(container => {
-          const slide = container.querySelector('.carousel-slide');
-          const items = container.querySelectorAll('.carousel-item');
-          const leftBtn = container.querySelector('.carousel-arrow.left');
-          const rightBtn = container.querySelector('.carousel-arrow.right');
-          let index = 0;
+  </div>
 
-          function updateSlide() {
-            slide.style.transform = `translateX(-${index * container.offsetWidth}px)`;
-          }
+  <!-- Fullscreen overlay -->
+  <div class="fullscreen" id="fsOverlay">
+    <div class="slides">
+      <img src="" alt="FS Slide">
+      <img src="" alt="FS Slide">
+      <img src="" alt="FS Slide">
+    </div>
+  </div>
 
-          leftBtn.onclick = () => {
-            index = (index - 1 + items.length) % items.length;
-            updateSlide();
-          };
+  <script>
+    // Shared logic for both views
+    function initSlider(container, allowTap) {
+      const slides = container.querySelector('.slides');
+      const imgs = slides.querySelectorAll('img');
+      let current = 0, startX = 0, deltaX = 0, isSwiping = false, isTap = false;
 
-          rightBtn.onclick = () => {
-            index = (index + 1) % items.length;
-            updateSlide();
-          };
+      function update() {
+        slides.style.transform = `translateX(-${current * container.clientWidth}px)`;
+      }
 
-          // Mobile swipe
-          let startX = 0;
-          let isSwiping = false;
+      slides.addEventListener('touchstart', e => {
+        startX = e.touches[0].clientX;
+        isSwiping = true; isTap = true;
+      });
 
-          slide.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-            isSwiping = true;
-          });
+      slides.addEventListener('touchmove', e => {
+        if (!isSwiping) return;
+        deltaX = e.touches[0].clientX - startX;
+        if (Math.abs(deltaX) > 10) isTap = false;
+        slides.style.transform = `translateX(${deltaX - current * container.clientWidth}px)`;
+      });
 
-          slide.addEventListener('touchmove', (e) => {
-            if (!isSwiping) return;
-            const currentX = e.touches[0].clientX;
-            const diff = startX - currentX;
-            slide.style.transform = `translateX(-${index * container.offsetWidth + diff}px)`;
-          });
-
-          slide.addEventListener('touchend', (e) => {
-            if (!isSwiping) return;
-            isSwiping = false;
-            const endX = e.changedTouches[0].clientX;
-            const diff = startX - endX;
-            const threshold = container.offsetWidth / 3;
-            if (Math.abs(diff) > threshold) {
-              index = diff > 0 ? (index + 1) % items.length : (index - 1 + items.length) % items.length;
-            }
-            updateSlide();
-          });
-
-          window.addEventListener("resize", updateSlide);
-        });
-
-        function enlargeImage(img) {
-          window.open(img.src, '_blank');
+      slides.addEventListener('touchend', e => {
+        isSwiping = false;
+        if (isTap && allowTap) {
+          const tapImg = e.target.closest('img');
+          if (tapImg) openFullscreen(Array.from(imgs).indexOf(tapImg));
+          return;
         }
-      </script>
-      <section id="donations" class="donations">
-        <h3>Donations Section</h3>
-        <p>Support our mission by donating usable items. "Making a Difference with Simple Acts of Kindness".</p>
-      </section>
-      <section class="donation-gallery">
-        <div class="donation-grid">
-          <div class="donation-item">
-            <img src="don1.jpg" alt="Donation Item 1" onclick="enlargeImage(this)">
-            <p>Click to Zoom</p>
-          </div>
-          <div class="donation-item">
-            <img src="don2.jpg" alt="Donation Item 2" onclick="enlargeImage(this)">
-            <p>Click to Zoom</p>
-          </div>
-          <div class="donation-item">
-            <img src="don3.jpg" alt="Donation Item 3" onclick="enlargeImage(this)">
-            <p>Click to Zoom</p>
-          </div>
-          <div class="donation-item">
-            <img src="don4.jpg" alt="Donation Item 4" onclick="enlargeImage(this)">
-            <p>Click to Zoom</p>
-          </div>
-        </div>
-      </section>
-    </section>
-  </main>
-  <footer id="contact">
-    <div class="footer-section about" id="about">
-      <h4>About KABOOM CRASH</h4>
-      <p>We're dedicated to giving quality items a second chance while helping you save money and reduce waste.</p>
-    </div>
-    <div class="footer-section links">
-      <h4>Quick Links</h4>
-      <ul>
-        <li>
-          <a href="#home">Home</a>
-        </li>
-        <li>
-          <a href="#featured">Products</a>
-        </li>
-        <li>
-          <a href="#donations">Our Donation Section</a>
-        </li>
-        <li>About Us</li>
-      </ul>
-    </div>
-    <div class="footer-section contact">
-      <h4>Contact Info</h4>
-      <p><a href="mailto:tippzcashtra@gmail.com">tippzcashtra@gmail.com</a></p>
-      <p><a href="tel:+26481785">+26481785</a></p>
-    </div>
-    <div class="footer-section social">
-      <h4>Follow Us</h4>
-      <p><a href="https://www.facebook.com/share/1CRCKL5zVH/" target="_blank">Facebook</a></p>
-    </div>
-    <hr>
-    <p class="copyright">© 2025 KABOOM CRASH. All rights reserved.</p>
-  </footer>
+        if (Math.abs(deltaX) > container.clientWidth / 3) {
+          current += deltaX < 0 ? 1 : -1;
+          current = (current + imgs.length) % imgs.length;
+        }
+        update();
+      });
+
+      window.addEventListener('resize', update);
+    }
+
+    // Set up main slider (no tap action)
+    initSlider(document.getElementById('mainSlider'), true);
+
+    // Fullscreen logic
+    const fs = document.getElementById('fsOverlay');
+    const fsSlides = fs.querySelector('.slides');
+    const fsImgs = fsSlides.querySelectorAll('img');
+    let fsCurrent = 0;
+
+    function openFullscreen(idx) {
+      document.querySelectorAll('#mainSlider .slides img').forEach((img, i) => {
+        fsImgs[i].src = img.src;
+      });
+      fsCurrent = idx;
+      fs.style.display = 'flex';
+      fsSlides.style.transform = `translateX(-${fsCurrent * fs.clientWidth}px)`;
+      initSlider(fs, false); // no tap inside fullscreen
+    }
+
+    // Exit fullscreen on outside tap
+    fs.addEventListener('click', e => {
+      if (e.target === fs) fs.style.display = 'none';
+    });
+  </script>
+
 </body>
 </html>
