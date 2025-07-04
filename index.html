@@ -4,65 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>KABOOM CRASH</title>
-
-  <!-- External CSS file for general styles -->
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Font Awesome for icons like search, phone, etc. -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-  <!-- Internal CSS for layout and components -->
-  <style>
-    /* Grid layout for featured products */
-    .product-grid {
-      display: grid;
-      gap: 20px;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      padding: 1rem;
-    }
-
-    /* Styles for individual product cards */
-    .product {
-      border: 1px solid #ccc;
-      padding: 10px;
-      text-align: center;
-      border-radius: 8px;
-    }
-
-    /* Carousel image styling for swipeable images */
-    .carousel img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      touch-action: pan-y;
-      cursor: pointer;
-    }
-
-    /* Grid for donation items gallery */
-    .donation-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1em;
-    }
-  </style>
 </head>
 <body>
-
-  <!-- HEADER SECTION -->
+  <!-- HEADER -->
   <header id="home">
-    <!-- Logo and branding -->
     <div class="logo-section">
       <h1 class="stroked-text">KABOOM CRASH</h1>
       <img src="Logo.jpeg" alt="Logo" class="logo-img"/>
     </div>
-
-    <!-- Search bar -->
     <div class="search-bar">
       <input type="text" placeholder="Search...">
       <button><i class="fas fa-search"></i></button>
     </div>
-
-    <!-- Navigation menu -->
     <nav>
       <ul class="nav-row">
         <li><a href="#home">Home</a></li>
@@ -73,35 +28,28 @@
     </nav>
   </header>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN -->
   <main>
-
-    <!-- Hero section with heading and CTA -->
     <section class="hero">
       <h2>Quality Pre-owned Items at Great Prices.</h2>
       <p>Discover amazing deals on carefully selected second-hand products.</p>
       <a href="#item3" class="cta-button">Shop Now</a>
     </section>
 
-    <!-- FEATURED PRODUCTS SECTION -->
+    <!-- FEATURED PRODUCTS -->
     <section class="featured" id="featured">
       <h3>Featured Products</h3>
-
-      <!-- Container for dynamically generated product cards -->
       <div class="product-grid"></div>
 
       <!-- PRODUCT DISPLAY SCRIPT -->
       <script>
-        // Product list (image(s), name, price, condition)
         const products = [
           { img: "PH1.jpg", name: "White Office Chair", price: "N$850", condition: "Excellent Condition" },
           { img: ["PH10a.jpg", "PH10b.jpg"], name: "2x Event Table Combo", price: "N$2,150 for Both", condition: "Pre-Loved" },
         ];
 
-        // Get the product grid container
         const grid = document.querySelector(".product-grid");
 
-        // Loop through each product and create its display
         products.forEach(product => {
           const productDiv = document.createElement("div");
           productDiv.className = "product";
@@ -115,18 +63,20 @@
           const imgElement = document.createElement("img");
           imgElement.src = imageList[currentIndex];
           imgElement.alt = product.name;
+          imgElement.style.cursor = "pointer";
+          imgElement.onclick = () => enlargeImage(imgElement); // click-to-zoom
           imageContainer.appendChild(imgElement);
 
-          // Swipe gesture for image carousel
+          // Swipe gesture for mobile
           let startX = 0;
           imgElement.addEventListener("touchstart", e => {
             startX = e.touches[0].clientX;
-          });
+          }, { passive: true });
 
           imgElement.addEventListener("touchend", e => {
             const endX = e.changedTouches[0].clientX;
             const diff = endX - startX;
-          
+
             if (Math.abs(diff) > 30 && imageList.length > 1) {
               currentIndex = (diff < 0)
                 ? (currentIndex + 1) % imageList.length
@@ -134,11 +84,10 @@
 
               imgElement.src = imageList[currentIndex];
             }
-          });
+          }, { passive: true });
 
           productDiv.appendChild(imageContainer);
 
-          // Product name, price, condition
           const name = document.createElement("h4");
           name.textContent = product.name;
 
@@ -154,48 +103,48 @@
 
           grid.appendChild(productDiv);
         });
+
+        function enlargeImage(img) {
+          window.open(img.src, '_blank');
+        }
       </script>
 
-      <!-- DONATIONS SECTION -->
+      <!-- DONATIONS -->
       <section id="donations" class="donations">
         <h3>Donations Section</h3>
         <p>Support our mission by donating usable items. "Making a Difference with Simple Acts of Kindness".</p>
       </section>
 
-      <!-- GALLERY OF DONATION ITEMS -->
-      <section class="donation-gallery" style="max-width: 600px; margin: 2em auto;">
+      <!-- DONATION GALLERY -->
+      <section class="donation-gallery">
         <div class="donation-grid">
-          <!-- Donation item cards with clickable images -->
           <div class="donation-item">
-            <img src="don1.jpg" alt="Donation Item 1" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
-            <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
+            <img src="don1.jpg" alt="Donation Item 1" onclick="enlargeImage(this)" />
+            <p>Click to Zoom</p>
           </div>
           <div class="donation-item">
-            <img src="don2.jpg" alt="Donation Item 2" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
-            <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
+            <img src="don2.jpg" alt="Donation Item 2" onclick="enlargeImage(this)" />
+            <p>Click to Zoom</p>
           </div>
           <div class="donation-item">
-            <img src="don3.jpg" alt="Donation Item 3" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
-            <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
+            <img src="don3.jpg" alt="Donation Item 3" onclick="enlargeImage(this)" />
+            <p>Click to Zoom</p>
           </div>
           <div class="donation-item">
-            <img src="don4.jpg" alt="Donation Item 4" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
-            <p style="text-align:center; margin-top:0.5em;">Click to Zoom</p>
+            <img src="don4.jpg" alt="Donation Item 4" onclick="enlargeImage(this)" />
+            <p>Click to Zoom</p>
           </div>
         </div>
       </section>
     </section>
   </main>
 
-  <!-- FOOTER SECTION -->
+  <!-- FOOTER -->
   <footer id="contact">
-    <!-- About section -->
     <div class="footer-section about" id="about">
       <h4>About KABOOM CRASH</h4>
       <p>We're dedicated to giving quality items a second chance while helping you save money and reduce waste.</p>
     </div>
-
-    <!-- Quick links -->
     <div class="footer-section links">
       <h4>Quick Links</h4>
       <ul>
@@ -205,36 +154,21 @@
         <li>About Us</li>
       </ul>
     </div>
-
-    <!-- Contact details -->
     <div class="footer-section contact">
       <h4>Contact Info</h4>
       <p><i class="fas fa-envelope"></i> <a href="mailto:tippzcashtraders@gmail.com">tippzcashtraders@gmail.com</a></p>
       <p><i class="fas fa-phone"></i> <a href="tel:+264817859603">+264817859603</a></p>
     </div>
-
-    <!-- Social media link -->
     <div class="footer-section social">
       <h4>Follow Us</h4>
       <p><a href="https://www.facebook.com/share/1CRCKL5zVH/" target="_blank">Facebook</a></p>
     </div>
-
-    <!-- Copyright -->
     <hr />
     <p class="copyright">© 2025 KABOOM CRASH. All rights reserved. Done by: Claudio Arroja</p>
   </footer>
 
-  <!-- JS FUNCTIONS -->
+  <!-- ENLARGE FUNCTION -->
   <script>
-    // Toggle like counter (if used in future versions)
-    function toggleLike(icon) {
-      const count = icon.nextElementSibling;
-      let number = parseInt(count.textContent);
-      icon.classList.toggle('liked');
-      count.textContent = icon.classList.contains('liked') ? number + 1 : number - 1;
-    }
-
-    // Opens clicked donation image in a new tab
     function enlargeImage(img) {
       window.open(img.src, '_blank');
     }
