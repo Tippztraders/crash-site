@@ -1,162 +1,240 @@
-* {
-  box-sizing: border-box;
-}
-
+/* Base Styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
   background: #f4f4f4;
 }
 
+.stroked-text {
+  color: white;
+  text-shadow: 1px 1px 2px #000;
+}
+
+/* Header & Navigation */
 header {
   background: linear-gradient(to right, green, yellow);
   padding: 1em;
   text-align: center;
-  color: white;
 }
 
 .logo-img {
-  display: block;
-  margin: 0.5em auto;
   max-width: 100px;
-  height: auto;
+  display: block;
+  margin: 1em auto;
+  background-color: #f0f0f0;
+  border-radius: 8px;
 }
 
 .search-bar {
-  margin: 1em auto;
   display: flex;
   justify-content: center;
+  margin-bottom: 1em;
 }
 
 .search-bar input {
   padding: 0.5em;
-  width: 60%;
   border: none;
-  border-radius: 4px 0 0 4px;
+  width: 60%;
 }
 
 .search-bar button {
   padding: 0.5em;
-  border: none;
   background: #eee;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
+  border: none;
 }
 
-nav ul {
+.nav-row {
   list-style: none;
   padding: 0;
-  margin-top: 1em;
+  margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  gap: 0.5em;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: white;
+  max-width: 900px;
 }
 
-nav ul li a {
+.nav-row li a {
   text-decoration: none;
-  color: #333;
-  background: white;
-  padding: 0.5em;
-  border-radius: 4px;
-  display: block;
-}
-
-.hero {
-  background: white;
-  padding: 2em 1em;
-  text-align: center;
-}
-
-.cta-button {
-  background-color: yellow;
   color: black;
-  padding: 0.75em 1.5em;
-  border-radius: 4px;
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 1em;
   font-weight: bold;
-}
-
-.featured {
   padding: 1em;
 }
 
-.featured h3 {
+@media (max-width: 600px) {
+  .nav-row li a {
+    font-size: 0.9em;
+    padding: 0.75em;
+  }
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 2em 1em;
+  background: white;
+}
+
+.cta-button {
+  background: yellow;
+  color: black;
+  text-decoration: none;
+  padding: 0.75em 1.5em;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+/* Featured Products */
+.featured {
+  padding: 2em 1em;
   text-align: center;
 }
 
 .product-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1em;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  padding: 1rem;
 }
 
-.product-card {
+.product {
   background: white;
+  border: 1px solid #ccc;
   padding: 1em;
   border-radius: 8px;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.product-card img {
-  max-width: 100%;
+.carousel img {
+  width: 100%;
   height: auto;
+  border-radius: 8px;
+  touch-action: pan-y;
+  cursor: pointer;
 }
 
-.product-card .price {
+.price {
   font-weight: bold;
-  margin: 0.5em 0;
-}
-
-.condition {
-  display: inline-block;
-  background: orangered;
-  color: white;
-  padding: 0.25em 0.5em;
-  border-radius: 4px;
-  font-size: 0.8em;
-  margin-bottom: 0.5em;
-}
-
-.whatsapp-button {
-  background: green;
-  color: white;
-  padding: 0.5em;
-  border-radius: 4px;
-  text-decoration: none;
-  display: inline-block;
   margin-top: 0.5em;
 }
 
-footer {
-  background: black;
+.faded-badge {
+  background: rgba(255, 0, 0, 0.1);
+  color: red;
+  padding: 0.3em 0.6em;
+  display: inline-block;
+  margin-top: 0.3em;
+  border-radius: 4px;
+}
+
+.status {
+  font-size: 0.9em;
+  margin-top: 0.3em;
+}
+
+/* Like Section */
+.like-section {
+  margin-top: 0.5em;
+}
+
+.fa-heart {
+  color: #ccc;
+  cursor: pointer;
+}
+
+.fa-heart.liked {
+  color: red;
+}
+
+.like-count {
+  margin-left: 5px;
+}
+
+/* WhatsApp Button */
+.whatsapp-button {
+  display: inline-block;
+  margin-top: 0.5em;
+  background: green;
   color: white;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Donation Section */
+.donation-gallery {
+  max-width: 600px;
+  margin: 2em auto;
+}
+
+.donation-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+}
+
+.donation-item {
+  background: white;
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.donation-item img {
+  width: 100%;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.donation-item p {
+  margin-top: 0.5em;
+  font-style: italic;
+  color: #555;
+}
+
+/* Footer */
+footer {
+  background: #000000;
+  color: #ccc;
   padding: 2em 1em;
   text-align: center;
 }
 
 footer h4 {
   color: #ffcc00;
-  margin-bottom: 0.5em;
-}
-
-footer p, footer a {
-  color: white;
-  font-size: 0.9em;
-  text-decoration: none;
 }
 
 footer ul {
-  padding: 0;
   list-style: none;
+  padding: 0;
 }
 
+footer a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.carousel img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+  touch-action: pan-y;
+  border-radius: 8px;
+}
+
+
 footer hr {
-  margin: 2em 0 1em;
+  margin-top: 2em;
   border: 0;
-  height: 1px;
-  background: #444;
+  border-top: 1px solid #444;
 }
