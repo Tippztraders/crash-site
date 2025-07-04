@@ -1,240 +1,91 @@
-/* Base Styles */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: #f4f4f4;
-}
+<!DOCTYPE html>
+<html lang="en">
 
-.stroked-text {
-  color: white;
-  text-shadow: 1px 1px 2px #000;
-}
+<head>
+  <meta charset="utf-8">
+  <title>Swiper demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
-/* Header & Navigation */
-header {
-  background: linear-gradient(to right, green, yellow);
-  padding: 1em;
-  text-align: center;
-}
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="swiper/swiper-bundle.min.css">
 
-.logo-img {
-  max-width: 100px;
-  display: block;
-  margin: 1em auto;
-  background-color: #f0f0f0;
-  border-radius: 8px;
-}
+  <!-- My CSS -->
+  <link rel="stylesheet" href="style.css">
 
-.search-bar {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1em;
-}
+</head>
 
-.search-bar input {
-  padding: 0.5em;
-  border: none;
-  width: 60%;
-}
+<body>
+  <!-- Swiper -->
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="img">
+          <img src="img/1.jpeg" alt="">
+        </div>
+        <div class="content">
+          <h3>Gambar 1</h3>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="img">
+          <img src="img/2.jpeg" alt="">
+        </div>
+        <div class="content">
+          <h3>Gambar 2</h3>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="img">
+          <img src="img/3.jpeg" alt="">
+        </div>
+        <div class="content">
+          <h3>Gambar 3</h3>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="img">
+          <img src="img/4.jpeg" alt="">
+        </div>
+        <div class="content">
+          <h3>Gambar 4</h3>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="img">
+          <img src="img/5.jpeg" alt="">
+        </div>
+        <div class="content">
+          <h3>Gambar 5</h3>
+        </div>
+      </div>
 
-.search-bar button {
-  padding: 0.5em;
-  background: #eee;
-  border: none;
-}
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
 
-.nav-row {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  background: white;
-  max-width: 900px;
-}
+  <!-- Swiper JS -->
+  <script src="swiper/swiper-bundle.min.js"></script>
 
-.nav-row li a {
-  text-decoration: none;
-  color: black;
-  font-weight: bold;
-  padding: 1em;
-}
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper('.swiper-container', {
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      coverflowEffect: {
+        rotate: 20,
+        stretch: 0,
+        depth: 500,
+        modifier: 1,
+        slideShadows: true,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+      },
+    });
+  </script>
+</body>
 
-@media (max-width: 600px) {
-  .nav-row li a {
-    font-size: 0.9em;
-    padding: 0.75em;
-  }
-}
-
-/* Hero Section */
-.hero {
-  text-align: center;
-  padding: 2em 1em;
-  background: white;
-}
-
-.cta-button {
-  background: yellow;
-  color: black;
-  text-decoration: none;
-  padding: 0.75em 1.5em;
-  font-weight: bold;
-  border-radius: 5px;
-}
-
-/* Featured Products */
-.featured {
-  padding: 2em 1em;
-  text-align: center;
-}
-
-.product-grid {
-  display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  padding: 1rem;
-}
-
-.product {
-  background: white;
-  border: 1px solid #ccc;
-  padding: 1em;
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.carousel img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  touch-action: pan-y;
-  cursor: pointer;
-}
-
-.price {
-  font-weight: bold;
-  margin-top: 0.5em;
-}
-
-.faded-badge {
-  background: rgba(255, 0, 0, 0.1);
-  color: red;
-  padding: 0.3em 0.6em;
-  display: inline-block;
-  margin-top: 0.3em;
-  border-radius: 4px;
-}
-
-.status {
-  font-size: 0.9em;
-  margin-top: 0.3em;
-}
-
-/* Like Section */
-.like-section {
-  margin-top: 0.5em;
-}
-
-.fa-heart {
-  color: #ccc;
-  cursor: pointer;
-}
-
-.fa-heart.liked {
-  color: red;
-}
-
-.like-count {
-  margin-left: 5px;
-}
-
-/* WhatsApp Button */
-.whatsapp-button {
-  display: inline-block;
-  margin-top: 0.5em;
-  background: green;
-  color: white;
-  padding: 0.5em 1em;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-/* Donation Section */
-.donation-gallery {
-  max-width: 600px;
-  margin: 2em auto;
-}
-
-.donation-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1em;
-}
-
-.donation-item {
-  background: white;
-  padding: 1em;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  text-align: center;
-}
-
-.donation-item img {
-  width: 100%;
-  cursor: pointer;
-  border-radius: 8px;
-}
-
-.donation-item p {
-  margin-top: 0.5em;
-  font-style: italic;
-  color: #555;
-}
-
-/* Footer */
-footer {
-  background: #000000;
-  color: #ccc;
-  padding: 2em 1em;
-  text-align: center;
-}
-
-footer h4 {
-  color: #ffcc00;
-}
-
-footer ul {
-  list-style: none;
-  padding: 0;
-}
-
-footer a {
-  color: #ccc;
-  text-decoration: none;
-}
-
-.carousel {
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.carousel img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.3s ease;
-  touch-action: pan-y;
-  border-radius: 8px;
-}
-
-
-footer hr {
-  margin-top: 2em;
-  border: 0;
-  border-top: 1px solid #444;
-}
+</html>
