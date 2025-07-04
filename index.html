@@ -1,68 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <title>Swiper demo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="swiper/swiper-bundle.min.css">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div class="swiper-container">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <div class="img"><img src="PH3a.jpeg" alt="PH3a"></div>
-        <div class="content">
-          <h3>Gambar 1</h3>
+    <!-- Navigation section start here -->
+    <nav class="navbar resp_navbar">
+        <ul class="navlist   resp_navlist">
+            <div id="shop-logo">
+                <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQwAAAC8CAMAAAC672BgAAAAllBMVEX////NMwHLIADMKwDsu7DqvbbKEwDLIgD88/HxzcLacVnqsabYblzprqD89/XZcWH78Or56eTz0sjjm4vnp5n24NrjlobVWj7TTyzuw7n129XHAADlo5jhlIbZaVDein7cfGradF7XYkXPOQDRQxjeiHbmq6LfgmzQQQ/UVjXZa1bcgXLUXkjTVz/Ya1rjnZDUUzjUUC0c1c9zAAAEo0lEQVR4nO3cbVvaMBQG4JKwFujoaIXJy8bQgSBz0/3/PzesDRYlgdSGc5o990es15UcDm1eThoEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgVELdAAJTEe2ISOTCV7Ov1E27vG9R6zj5nbpplzeXumD8oG7a5cl3VDAW1E27vN58vu3tfL7JLRZzFYwb6qYxMCpuIvKWuiUMpOp3MqZuCQOJCsZP6pZwoB4nEXVDOFgWwQipG8LBffE7CVPqljDQU8GYUreEgVURDNGlbgkDarYiJtQtYSAughG1qVvCQFsUwbijbgkDXRWM/3BB451pEQy5pm4JA2lYBGNO3RIGEhWMa+qWcKBmastJ24VmDWw3aqomXJDNWna/1y2L1kEMqbtnZ+syGJsOdffs/HIYjOiRuneWvrsMRrPuGEFwpdtXqiEWV9Sds9V3F4yGPUqC15la/ZqXGEHmLBitAXXfrI1cBaOJ8+DU1T1DNGyM8WzgKBbRirpnFXSWpztWKRjNu2PsPLmJRRMTIwgenAxBZbPm7oqTmZpsZmIECxfBEM1MjP2eWp0au7w8dDDQYJ0Y7cUXrd/1x4J1YlyF78v83tb71SkaUfdYT+2NXArrOkqHE9OjBOPECJKq2wDVfkKyR91ho+RTNTeVohFyTowP0NaamxLD12Jj7SkEA+FrdditfWYwv2NUF/uQGIOJ/qaYqYuy0/fPCrFgV5HfDg2PS3UA68Z0UfUnK7d60tQ4xpJP+UXf3AzE2BUAxeZgbPOLrt1ssYrsROMuLZsZpmWRfBkSrYXhosrTOHaJsUuNz3rrYnjYWb1+9ue4/G8tq3B4XnQ92JwOwWti3FM317FHi+dr6HdiWC2Rel8+mVrcM5ifTEj0Tl/xbLLxJjEef+YvAjhCbPIBQXss8hcFFB+WFZ+cnxfME+PKsPYpnw+ydsM6h15L6v4amb7WPBi1DkN5J4YxGGEc1FsdLP9Sd9esPwt1XuqYM6G9wPoHJNif6+roHFwwOGLUs4uG34NPy/Im/onxER2bSYnvLxaYWK3++J0YmVVe8B5jdL72ytQQIO6d6cFuLVjEpL01G7Sig/WqYsevZypN+MgK15Jzyfz6zRf7MjqcuCpNiPrUHTZZvvlmXypUnR0tkdT9NRqGB1PU4tT/VGgmsfvQaea4J4TMj+V1+yWxKjcb9Y+K1Wb7uPzh+e443zGsqd/PE3VDOFAbzMtUO5kxoW5+vfajTf0kVm/mWT51ZxWLvvKd7IaWieskWdatIMvy/+NcDWxv1B5WeZtBOunHvtWyda93ww8R2VY4j7by+fW7c6/yYlUs8EV2JTf9opRFtjx6mKz3yxahzZLEcD/Naej5q2NKhS02tRXT0pSP98TEwsHa3ub8/ytvuES+3DUODsKfv1o1LU9/m3lm84gfpW/Y4mDEQQy9WQouH9az2B4sF7A08F0IGqVKFGkxxSjXE0pvHq2lfLcpcy69WcHqgcyc2nqWdnV6qpBacl/kspKOdyNJKcWt3SQjmYf5v439qmhL+tvx9cq+T5PF3/tF26v1PgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYOUfqvpW1aESuwQAAAAASUVORK5CYII='
+                    alt="No Image">
+            </div>
+
+            <li class="nav-items"><a href="#" onclick="show_shop()">My Shop</a></li>
+            <li class="nav-items"><a href="#">Contact Us</a></li>
+
+            <!-- Icon for cart  -->
+            <div id="cart-logo">
+                <i class="fa fa-shopping-cart" style="font-size:50px" onclick="show_cart()"></i>
+            </div>
+
+        </ul>
+
+        <div class="burger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
         </div>
-      </div>
-      <div class="swiper-slide">
-        <div class="img"><img src="PH3b.jpeg" alt="PH3b"></div>
-        <div class="content">
-          <h3>Gambar 2</h3>
+
+    </nav>
+
+
+    <h2 style="margin: 50px;">TOP products </h2>
+    <section id="shop_products"></section>
+
+    <section id="cart"></section>
+
+    <div class="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>about us</h3>
+                <p>This project is built for education purpose.
+                    We just created the online shoping website for the project
+                </p>
+            </div>
+
+            <div class="box">
+                <h3>Quick Links</h3>
+                <a href="#home">Home</a>
+                <a href="#about">about</a>
+                <a href="#pricing">pricing</a>
+                <a href="#contact">contact</a>
+            </div>
+
+            <div class="box">
+                <h3>follow us</h3>
+                <a href="  https://www.facebook.com/">facebook</a>
+                <a href="  https://www.instagram.com/">instagram</a>
+                <a href="https://www.linkedin.com/">LinkedIn</a>
+                <a href="https://github.com/ ">Github</a>
+            </div>
+
+            <div class="box">
+                <h3>contact info</h3>
+                <div class="info">
+                    <i class="fas fa-phone"></i>
+                    +91 92xxxxxx17 </p>
+                </div>
+                <div class="info">
+                    <i class="fas fa-envelope"></i>
+                    <p> testmail@gmail.com </p>
+                </div>
+                <div class="info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p> Gujarat , india </p>
+                </div>
+            </div>
+
         </div>
-      </div>
-      <div class="swiper-slide">
-        <div class="img"><img src="PH3c.jpeg" alt="PH3c"></div>
-        <div class="content">
-          <h3>Gambar 3</h3>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <div class="img"><img src="PH3a.jpeg" alt="PH3a"></div>
-        <div class="content">
-          <h3>Gambar 4</h3>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <div class="img"><img src="PH3b.jpeg" alt="PH3b"></div>
-        <div class="content">
-          <h3>Gambar 5</h3>
-        </div>
-      </div>
+
+        <h1 class="credit"> &copy; copyright recived @ 2022 </h1>
+
     </div>
-    <div class="swiper-pagination"></div>
-  </div>
-  <script src="swiper/swiper-bundle.min.js"></script> 
-  <script>
-
-
-    var swiper = new Swiper('.swiper-container', {
-      effect: 'coverflow',
-      grabCursor: true,
-      centeredSlides: true,
-      slidesPerView: 'auto',
-      coverflowEffect: {
-        rotate: 20,
-        stretch: 0,
-        depth: 500,
-        modifier: 1,
-        slideShadows: true,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-      },
-    });
-  </script>
 </body>
+<script src="script.js"></script>
+
 </html>
