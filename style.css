@@ -1,1 +1,162 @@
+* {
+  box-sizing: border-box;
+}
 
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+}
+
+header {
+  background: linear-gradient(to right, green, yellow);
+  padding: 1em;
+  text-align: center;
+  color: white;
+}
+
+.logo-img {
+  display: block;
+  margin: 0.5em auto;
+  max-width: 100px;
+  height: auto;
+}
+
+.search-bar {
+  margin: 1em auto;
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar input {
+  padding: 0.5em;
+  width: 60%;
+  border: none;
+  border-radius: 4px 0 0 4px;
+}
+
+.search-bar button {
+  padding: 0.5em;
+  border: none;
+  background: #eee;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  background: white;
+  padding: 0.5em;
+  border-radius: 4px;
+  display: block;
+}
+
+.hero {
+  background: white;
+  padding: 2em 1em;
+  text-align: center;
+}
+
+.cta-button {
+  background-color: yellow;
+  color: black;
+  padding: 0.75em 1.5em;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1em;
+  font-weight: bold;
+}
+
+.featured {
+  padding: 1em;
+}
+
+.featured h3 {
+  text-align: center;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+}
+
+.product-card {
+  background: white;
+  padding: 1em;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-card .price {
+  font-weight: bold;
+  margin: 0.5em 0;
+}
+
+.condition {
+  display: inline-block;
+  background: orangered;
+  color: white;
+  padding: 0.25em 0.5em;
+  border-radius: 4px;
+  font-size: 0.8em;
+  margin-bottom: 0.5em;
+}
+
+.whatsapp-button {
+  background: green;
+  color: white;
+  padding: 0.5em;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 0.5em;
+}
+
+footer {
+  background: black;
+  color: white;
+  padding: 2em 1em;
+  text-align: center;
+}
+
+footer h4 {
+  color: #ffcc00;
+  margin-bottom: 0.5em;
+}
+
+footer p, footer a {
+  color: white;
+  font-size: 0.9em;
+  text-decoration: none;
+}
+
+footer ul {
+  padding: 0;
+  list-style: none;
+}
+
+footer hr {
+  margin: 2em 0 1em;
+  border: 0;
+  height: 1px;
+  background: #444;
+}
