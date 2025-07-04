@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    /* Main layout styles */
     .product-grid {
       display: grid;
       gap: 20px;
@@ -20,6 +19,8 @@
       padding: 10px;
       text-align: center;
       border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
     .carousel img {
@@ -86,15 +87,18 @@
 
     <section class="featured" id="featured">
       <h3>Featured Products</h3>
-      <div class="product-grid">
-        <div class="carousel-container">
-          <div class="carousel-slide">
-            <div class="carousel-item"><img src="PH3a.jpg" alt="Image 2"></div>
-            <div class="carousel-item"><img src="PH3b.jpg" alt="Image 3"></div>
-            <div class="carousel-item"><img src="PH3c.jpg" alt="Image 3"></div>
-          </div>
+
+      <!-- IMAGE CAROUSEL BLOCK -->
+      <div class="carousel-container">
+        <div class="carousel-slide">
+          <div class="carousel-item"><img src="PH3a.jpg" alt="Image 2"></div>
+          <div class="carousel-item"><img src="PH3b.jpg" alt="Image 3"></div>
+          <div class="carousel-item"><img src="PH3c.jpg" alt="Image 3"></div>
         </div>
       </div>
+
+      <!-- PRODUCTS DISPLAY -->
+      <div class="product-grid" id="product-list"></div>
 
       <script>
         const products = [
@@ -112,7 +116,7 @@
           }
         ];
 
-        const grid = document.querySelector(".product-grid");
+        const grid = document.getElementById("product-list");
 
         products.forEach(product => {
           const productDiv = document.createElement("div");
