@@ -1,50 +1,37 @@
-body {
-  font-family: Arial, sans-serif;
+* {
   margin: 0;
-  background: #f4f4f4;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.featured {
-  padding: 2em 1em;
-  text-align: center;
+body {
+  font-family: sans-serif;
+  background-color: #f4f4f4;
+  overflow-x: hidden;
 }
 
-.product-grid {
-  display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  padding: 1rem;
-}
-
-.product {
-  background: white;
-  border: 1px solid #ccc;
-  padding: 1em;
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.carousel {
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.carousel img {
+.carousel-container {
   width: 100%;
-  height: auto;
+  max-width: 600px;
+  margin: 2em auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+.carousel-slide {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.carousel-item img {
+  width: 100%;
   display: block;
-  transition: transform 0.3s ease;
-  touch-action: pan-y;
-  cursor: pointer;
-  border-radius: 8px;
-}
-
-h4 {
-  margin: 0.5em 0 0.2em;
-}
-
-p {
-  margin: 0.2em 0;
+  object-fit: cover;
 }
