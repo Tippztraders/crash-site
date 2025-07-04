@@ -1,4 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- Swiper CSS (Put this in <head>) -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+<!-- Product Container -->
+<div class="product-row">
+  <!-- Product 1 -->
+  <div class="product-card">
+    <div class="swiper product-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="PH10a.jpg" /></div>
+        <div class="swiper-slide"><img src="PH10b.jpg" /></div>
+         </div>
+    </div>
+    <h2>Product 1</h2>
+    <p class="description">Short description for product 1.</p>
+    <p class="price">$29.99</p>
+    <button>Add to Cart</button>
+  </div>
+
+  <!-- Product 2 -->
+  <div class="product-card">
+    <div class="swiper product-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="PH3a.jpg" /></div>
+        <div class="swiper-slide"><img src="PH3b.jpg" /></div>
+        <div class="swiper-slide"><img src="PH3c.jpg" /></div>
+      </div>
+    </div>
+    <h2>Product 2</h2>
+    <p class="description">Short description for product 2.</p>
+    <p class="price">$39.99</p>
+    <button>Add to Cart</button>
+  </div>
+</div>
+
+<!-- Swiper JS (Put before </body>) -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  const swipers = document.querySelectorAll('.product-swiper');
+  swipers.forEach(container => {
+    new Swiper(container, {
+      zoom: true,
+      loop: true,
+      slidesPerView: 1,
+      spaceBetween: 10,
+    });
+  });
+</script>    
      
 </html>
