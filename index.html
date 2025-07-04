@@ -70,9 +70,13 @@
 
       <script>
   const products = [
+    <div class="carousel-container">
+    <div class="carousel-slide">
     { img: "PH 1.jpg", name: "White Office Chair", price: "N$850", condition: "Excellent Condition" },
     { img: "PH 2.jpg", name: "32L Samsung Microwave", price: "N$950", condition: "Pre-Loved" },
-    { img: "PH 3.jpg", name: "Electrical Frying Pan", price: "N$450", condition: "Pre-Loved" },
+    <div class="carousel-item"><img src="PH3a.jpg" alt="Image 2"></div>
+    <div class="carousel-item"><img src="PH3b.jpg" alt="Image 3"></div>
+    <div class="carousel-item"><img src="PH3c.jpg" alt="Image 3"></div>
     { img: "PH 4.jpg", name: "Traditional Pot #3", price: "N$350", condition: "Showroom Quality" },
     { img: "PH 5.jpg", name: "Traditional Pot #2", price: "N$250", condition: "Showroom Quality" },
     { img: ["PH 6.jpg", "PH 6b.jpg", "PH 6c.jpg"], name: "32L Samsung Microwave", price: "N$1,250", condition: "Trendsetter" },
@@ -81,7 +85,9 @@
     { img: "PH 9.jpg", name: "Kitchen Sink", price: "N$1,250", condition: "Well-Maintained" },
     { img: "PH 10.jpg", name: "Assorted Fabric", price: "N$20 per meter", condition: "Excellent Condition" }
   ];
-
+    </div>
+  </div>
+     
   const grid = document.querySelector(".product-grid");
 
   products.forEach(product => {
