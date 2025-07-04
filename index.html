@@ -60,14 +60,17 @@
           const imageContainer = document.createElement("div");
           imageContainer.className = "carousel";
 
-          const imgElement = document.createElement("img");
+          // Create first image element
+          let imgElement = document.createElement("img");
           imgElement.src = imageList[currentIndex];
           imgElement.alt = product.name;
           imgElement.style.cursor = "pointer";
-          imgElement.onclick = () => enlargeImage(imgElement); // click-to-zoom
-          imageContainer.appendChild(imgElement);
+          imgElement.onclick = () => enlargeImage(imgElement);
 
-          // Swipe gesture for mobile
+          imageContainer.appendChild(imgElement);
+          productDiv.appendChild(imageContainer);
+
+          // SWIPE GESTURE SUPPORT
           let startX = 0;
           imgElement.addEventListener("touchstart", e => {
             startX = e.touches[0].clientX;
@@ -82,11 +85,34 @@
                 ? (currentIndex + 1) % imageList.length
                 : (currentIndex - 1 + imageList.length) % imageList.length;
 
-              imgElement.src = imageList[currentIndex];
+              // Replace image element with new one
+              const newImg = document.createElement("img");
+              newImg.src = imageList[currentIndex];
+              newImg.alt = product.name;
+              newImg.style.cursor = "pointer";
+              newImg.onclick = () => enlargeImage(newImg);
+
+              newImg.addEventListener("touchstart", e => {
+                startX = e.touches[0].clientX;
+              }, { passive: true });
+
+              newImg.addEventListener("touchend", e => {
+                const endX = e.changedTouches[0].clientX;
+                const diff = endX - startX;
+
+                if (Math.abs(diff) > 30 && imageList.length > 1) {
+                  currentIndex = (diff < 0)
+                    ? (currentIndex + 1) % imageList.length
+                    : (currentIndex - 1 + imageList.length) % imageList.length;
+
+                  newImg.src = imageList[currentIndex];
+                }
+              }, { passive: true });
+
+              imageContainer.replaceChild(newImg, imgElement);
+              imgElement = newImg;
             }
           }, { passive: true });
-
-          productDiv.appendChild(imageContainer);
 
           const name = document.createElement("h4");
           name.textContent = product.name;
@@ -109,7 +135,7 @@
         }
       </script>
 
-      <!-- DONATIONS -->
+      <!-- DONATIONS SECTION -->
       <section id="donations" class="donations">
         <h3>Donations Section</h3>
         <p>Support our mission by donating usable items. "Making a Difference with Simple Acts of Kindness".</p>
@@ -156,18 +182,18 @@
     </div>
     <div class="footer-section contact">
       <h4>Contact Info</h4>
-      <p><i class="fas fa-envelope"></i> <a href="mailto:tippzcashtra@gmail.com">tippzcashtra@gmail.com</a></p>
-      <p><i class="fas fa-phone"></i> <a href="tel:+264817859">+264817859</a></p>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:tippzcashtraders@gmail.com">tippzcashtraders@gmail.com</a></p>
+      <p><i class="fas fa-phone"></i> <a href="tel:+264817859603">+264817859603</a></p>
     </div>
     <div class="footer-section social">
       <h4>Follow Us</h4>
       <p><a href="https://www.facebook.com/share/1CRCKL5zVH/" target="_blank">Facebook</a></p>
     </div>
     <hr />
-    <p class="copyright">© 2025 KABOOM CRASH. All rights reserved. </p>
+    <p class="copyright">© 2025 KABOOM CRASH. All rights reserved. Done by: Claudio Arroja</p>
   </footer>
 
-  <!-- ENLARGE FUNCTION -->
+  <!-- IMAGE ZOOM FUNCTION -->
   <script>
     function enlargeImage(img) {
       window.open(img.src, '_blank');
