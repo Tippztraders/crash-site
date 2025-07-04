@@ -3,201 +3,105 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>KABOOM CRASH</title>
+  <title>KABOOM CRASH - Products</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
-  <!-- HEADER -->
-  <header id="home">
-    <div class="logo-section">
-      <h1 class="stroked-text">KABOOM CRASH</h1>
-      <img src="Logo.jpeg" alt="Logo" class="logo-img"/>
-    </div>
-    <div class="search-bar">
-      <input type="text" placeholder="Search...">
-      <button><i class="fas fa-search"></i></button>
-    </div>
-    <nav>
-      <ul class="nav-row">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#featured">Products</a></li>
-        <li><a href="#donations">Donations</a></li>
-        <li><a href="#about">About</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- PRODUCT SECTION ONLY -->
+  <section class="featured" id="featured">
+    <h3>Featured Products</h3>
+    <div class="product-grid"></div>
 
-  <!-- MAIN -->
-  <main>
-    <section class="hero">
-      <h2>Quality Pre-owned Items at Great Prices.</h2>
-      <p>Discover amazing deals on carefully selected second-hand products.</p>
-      <a href="#item3" class="cta-button">Shop Now</a>
-    </section>
+    <!-- PRODUCT DISPLAY SCRIPT -->
+    <script>
+      const products = [
+        { img: "PH1.jpg", name: "White Office Chair", price: "N$850", condition: "Excellent Condition" },
+        { img: ["PH10a.jpg", "PH10b.jpg"], name: "2x Event Table Combo", price: "N$2,150 for Both", condition: "Pre-Loved" },
+      ];
 
-    <!-- FEATURED PRODUCTS -->
-    <section class="featured" id="featured">
-      <h3>Featured Products</h3>
-      <div class="product-grid"></div>
+      const grid = document.querySelector(".product-grid");
 
-      <!-- PRODUCT DISPLAY SCRIPT -->
-      <script>
-        const products = [
-          { img: "PH1.jpg", name: "White Office Chair", price: "N$850", condition: "Excellent Condition" },
-          { img: ["PH10a.jpg", "PH10b.jpg"], name: "2x Event Table Combo", price: "N$2,150 for Both", condition: "Pre-Loved" },
-        ];
+      products.forEach(product => {
+        const productDiv = document.createElement("div");
+        productDiv.className = "product";
 
-        const grid = document.querySelector(".product-grid");
+        const imageList = Array.isArray(product.img) ? product.img : [product.img];
+        let currentIndex = 0;
 
-        products.forEach(product => {
-          const productDiv = document.createElement("div");
-          productDiv.className = "product";
+        const imageContainer = document.createElement("div");
+        imageContainer.className = "carousel";
 
-          const imageList = Array.isArray(product.img) ? product.img : [product.img];
-          let currentIndex = 0;
+        let imgElement = document.createElement("img");
+        imgElement.src = imageList[currentIndex];
+        imgElement.alt = product.name;
+        imgElement.style.cursor = "pointer";
+        imgElement.onclick = () => enlargeImage(imgElement);
 
-          const imageContainer = document.createElement("div");
-          imageContainer.className = "carousel";
+        imageContainer.appendChild(imgElement);
+        productDiv.appendChild(imageContainer);
 
-          // Create first image element
-          let imgElement = document.createElement("img");
-          imgElement.src = imageList[currentIndex];
-          imgElement.alt = product.name;
-          imgElement.style.cursor = "pointer";
-          imgElement.onclick = () => enlargeImage(imgElement);
+        let startX = 0;
+        imgElement.addEventListener("touchstart", e => {
+          startX = e.touches[0].clientX;
+        }, { passive: true });
 
-          imageContainer.appendChild(imgElement);
-          productDiv.appendChild(imageContainer);
+        imgElement.addEventListener("touchend", e => {
+          const endX = e.changedTouches[0].clientX;
+          const diff = endX - startX;
 
-          // SWIPE GESTURE SUPPORT
-          let startX = 0;
-          imgElement.addEventListener("touchstart", e => {
-            startX = e.touches[0].clientX;
-          }, { passive: true });
+          if (Math.abs(diff) > 30 && imageList.length > 1) {
+            currentIndex = (diff < 0)
+              ? (currentIndex + 1) % imageList.length
+              : (currentIndex - 1 + imageList.length) % imageList.length;
 
-          imgElement.addEventListener("touchend", e => {
-            const endX = e.changedTouches[0].clientX;
-            const diff = endX - startX;
+            const newImg = document.createElement("img");
+            newImg.src = imageList[currentIndex];
+            newImg.alt = product.name;
+            newImg.style.cursor = "pointer";
+            newImg.onclick = () => enlargeImage(newImg);
 
-            if (Math.abs(diff) > 30 && imageList.length > 1) {
-              currentIndex = (diff < 0)
-                ? (currentIndex + 1) % imageList.length
-                : (currentIndex - 1 + imageList.length) % imageList.length;
+            newImg.addEventListener("touchstart", e => {
+              startX = e.touches[0].clientX;
+            }, { passive: true });
 
-              // Replace image element with new one
-              const newImg = document.createElement("img");
-              newImg.src = imageList[currentIndex];
-              newImg.alt = product.name;
-              newImg.style.cursor = "pointer";
-              newImg.onclick = () => enlargeImage(newImg);
+            newImg.addEventListener("touchend", e => {
+              const endX = e.changedTouches[0].clientX;
+              const diff = endX - startX;
 
-              newImg.addEventListener("touchstart", e => {
-                startX = e.touches[0].clientX;
-              }, { passive: true });
+              if (Math.abs(diff) > 30 && imageList.length > 1) {
+                currentIndex = (diff < 0)
+                  ? (currentIndex + 1) % imageList.length
+                  : (currentIndex - 1 + imageList.length) % imageList.length;
+                newImg.src = imageList[currentIndex];
+              }
+            }, { passive: true });
 
-              newImg.addEventListener("touchend", e => {
-                const endX = e.changedTouches[0].clientX;
-                const diff = endX - startX;
+            imageContainer.replaceChild(newImg, imgElement);
+            imgElement = newImg;
+          }
+        }, { passive: true });
 
-                if (Math.abs(diff) > 30 && imageList.length > 1) {
-                  currentIndex = (diff < 0)
-                    ? (currentIndex + 1) % imageList.length
-                    : (currentIndex - 1 + imageList.length) % imageList.length;
+        const name = document.createElement("h4");
+        name.textContent = product.name;
 
-                  newImg.src = imageList[currentIndex];
-                }
-              }, { passive: true });
+        const price = document.createElement("p");
+        price.textContent = product.price;
 
-              imageContainer.replaceChild(newImg, imgElement);
-              imgElement = newImg;
-            }
-          }, { passive: true });
+        const condition = document.createElement("p");
+        condition.textContent = product.condition;
 
-          const name = document.createElement("h4");
-          name.textContent = product.name;
+        productDiv.appendChild(name);
+        productDiv.appendChild(price);
+        productDiv.appendChild(condition);
 
-          const price = document.createElement("p");
-          price.textContent = product.price;
+        grid.appendChild(productDiv);
+      });
 
-          const condition = document.createElement("p");
-          condition.textContent = product.condition;
-
-          productDiv.appendChild(name);
-          productDiv.appendChild(price);
-          productDiv.appendChild(condition);
-
-          grid.appendChild(productDiv);
-        });
-
-        function enlargeImage(img) {
-          window.open(img.src, '_blank');
-        }
-      </script>
-
-      <!-- DONATIONS SECTION -->
-      <section id="donations" class="donations">
-        <h3>Donations Section</h3>
-        <p>Support our mission by donating usable items. "Making a Difference with Simple Acts of Kindness".</p>
-      </section>
-
-      <!-- DONATION GALLERY -->
-      <section class="donation-gallery">
-        <div class="donation-grid">
-          <div class="donation-item">
-            <img src="don1.jpg" alt="Donation Item 1" onclick="enlargeImage(this)" />
-            <p>Click to Zoom</p>
-          </div>
-          <div class="donation-item">
-            <img src="don2.jpg" alt="Donation Item 2" onclick="enlargeImage(this)" />
-            <p>Click to Zoom</p>
-          </div>
-          <div class="donation-item">
-            <img src="don3.jpg" alt="Donation Item 3" onclick="enlargeImage(this)" />
-            <p>Click to Zoom</p>
-          </div>
-          <div class="donation-item">
-            <img src="don4.jpg" alt="Donation Item 4" onclick="enlargeImage(this)" />
-            <p>Click to Zoom</p>
-          </div>
-        </div>
-      </section>
-    </section>
-  </main>
-
-  <!-- FOOTER -->
-  <footer id="contact">
-    <div class="footer-section about" id="about">
-      <h4>About KABOOM CRASH</h4>
-      <p>We're dedicated to giving quality items a second chance while helping you save money and reduce waste.</p>
-    </div>
-    <div class="footer-section links">
-      <h4>Quick Links</h4>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#featured">Products</a></li>
-        <li><a href="#donations">Our Donation Section</a></li>
-        <li>About Us</li>
-      </ul>
-    </div>
-    <div class="footer-section contact">
-      <h4>Contact Info</h4>
-      <p><i class="fas fa-envelope"></i> <a href="mailto:tippzcashtraders@gmail.com">tippzcashtraders@gmail.com</a></p>
-      <p><i class="fas fa-phone"></i> <a href="tel:+264817859603">+264817859603</a></p>
-    </div>
-    <div class="footer-section social">
-      <h4>Follow Us</h4>
-      <p><a href="https://www.facebook.com/share/1CRCKL5zVH/" target="_blank">Facebook</a></p>
-    </div>
-    <hr />
-    <p class="copyright">© 2025 KABOOM CRASH. All rights reserved. Done by: Claudio Arroja</p>
-  </footer>
-
-  <!-- IMAGE ZOOM FUNCTION -->
-  <script>
-    function enlargeImage(img) {
-      window.open(img.src, '_blank');
-    }
-  </script>
+      function enlargeImage(img) {
+        window.open(img.src, '_blank');
+      }
+    </script>
+  </section>
 </body>
 </html>
