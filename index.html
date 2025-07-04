@@ -71,136 +71,92 @@
     <section class="hero">
       <h2>Quality Pre-owned Items at Great Prices.</h2>
       <p>Discover amazing deals on carefully selected second-hand products.</p>
-      <a href="#item3" class="cta-button">Shop Now</a>
+      <a href="#featured" class="cta-button">Shop Now</a>
     </section>
 
     <!-- FEATURED PRODUCTS -->
     <section class="featured" id="featured">
       <h3>Featured Products</h3>
-      <div class="product-grid"></div>
+      <div class="product-grid">
 
-      <!-- PRODUCT DISPLAY SCRIPT -->
+        <!-- Product 1 -->
+        <div class="product">
+          <div class="carousel-container">
+            <div class="carousel-slide">
+              <div class="carousel-item"><img src="image1.jpg" alt="Event Table Combo 1" onclick="enlargeImage(this)"></div>
+              <div class="carousel-item"><img src="image2.jpg" alt="Event Table Combo 2" onclick="enlargeImage(this)"></div>
+              <div class="carousel-item"><img src="image3.jpg" alt="Event Table Combo 3" onclick="enlargeImage(this)"></div>
+            </div>
+            <button class="carousel-arrow left">&#10094;</button>
+            <button class="carousel-arrow right">&#10095;</button>
+          </div>
+          <h4>2x Event Table Combo</h4>
+          <p>N$2,150 for Both</p>
+          <p>Pre-Loved</p>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product">
+          <img src="PH1.jpg" alt="White Office Chair" onclick="enlargeImage(this)" />
+          <h4>White Office Chair</h4>
+          <p>N$850</p>
+          <p>Excellent Condition</p>
+        </div>
+
+      </div>
+
+      <!-- CAROUSEL SCRIPT -->
       <script>
-        const products = [
-          { img: "PH1.jpg", name: "White Office Chair", price: "N$850", condition: "Excellent Condition" },
-          { img: ["PH10a.jpg", "PH10b.jpg", "PH10c.jpg"], name: "2x Event Table Combo", price: "N$2,150 for Both", condition: "Pre-Loved" },
-        ];
+        document.querySelectorAll('.carousel-container').forEach(container => {
+          const slide = container.querySelector('.carousel-slide');
+          const items = container.querySelectorAll('.carousel-item');
+          const leftBtn = container.querySelector('.carousel-arrow.left');
+          const rightBtn = container.querySelector('.carousel-arrow.right');
+          let index = 0;
 
-        const grid = document.querySelector(".product-grid");
-
-        products.forEach(product => {
-          const productDiv = document.createElement("div");
-          productDiv.className = "product";
-
-          const imageList = Array.isArray(product.img) ? product.img : [product.img];
-
-          if (imageList.length === 1) {
-            const imgElement = document.createElement("img");
-            imgElement.src = imageList[0];
-            imgElement.alt = product.name;
-            imgElement.onclick = () => enlargeImage(imgElement);
-            productDiv.appendChild(imgElement);
-          } else {
-            // Carousel structure
-            const carouselContainer = document.createElement("div");
-            carouselContainer.className = "carousel-container";
-
-            const carouselSlide = document.createElement("div");
-            carouselSlide.className = "carousel-slide";
-
-            imageList.forEach(imgSrc => {
-              const item = document.createElement("div");
-              item.className = "carousel-item";
-
-              const img = document.createElement("img");
-              img.src = imgSrc;
-              img.alt = product.name;
-              img.onclick = () => enlargeImage(img);
-
-              item.appendChild(img);
-              carouselSlide.appendChild(item);
-            });
-
-            carouselContainer.appendChild(carouselSlide);
-
-            // Add arrows
-            const leftArrow = document.createElement("button");
-            leftArrow.innerHTML = "&#10094;";
-            leftArrow.className = "carousel-arrow left";
-
-            const rightArrow = document.createElement("button");
-            rightArrow.innerHTML = "&#10095;";
-            rightArrow.className = "carousel-arrow right";
-
-            carouselContainer.appendChild(leftArrow);
-            carouselContainer.appendChild(rightArrow);
-
-            productDiv.appendChild(carouselContainer);
-
-            // Swipe + Arrow logic
-            let currentIndex = 0;
-            let startX = 0;
-            let isSwiping = false;
-
-            function updateSlide() {
-              const width = carouselContainer.offsetWidth;
-              carouselSlide.style.transform = `translateX(-${currentIndex * width}px)`;
-            }
-
-            function goToSlide(index) {
-              const maxIndex = imageList.length - 1;
-              if (index < 0) index = maxIndex;
-              if (index > maxIndex) index = 0;
-              currentIndex = index;
-              updateSlide();
-            }
-
-            rightArrow.onclick = () => goToSlide(currentIndex + 1);
-            leftArrow.onclick = () => goToSlide(currentIndex - 1);
-
-            carouselSlide.addEventListener("touchstart", (e) => {
-              startX = e.touches[0].clientX;
-              isSwiping = true;
-            });
-
-            carouselSlide.addEventListener("touchmove", (e) => {
-              if (!isSwiping) return;
-              const currentX = e.touches[0].clientX;
-              const diff = startX - currentX;
-              carouselSlide.style.transform = `translateX(-${currentIndex * carouselContainer.offsetWidth + diff}px)`;
-            });
-
-            carouselSlide.addEventListener("touchend", (e) => {
-              if (!isSwiping) return;
-              isSwiping = false;
-              const endX = e.changedTouches[0].clientX;
-              const diff = startX - endX;
-              const threshold = carouselContainer.offsetWidth / 3;
-
-              if (Math.abs(diff) > threshold) {
-                goToSlide(diff > 0 ? currentIndex + 1 : currentIndex - 1);
-              } else {
-                updateSlide();
-              }
-            });
-
-            window.addEventListener("resize", updateSlide);
+          function updateSlide() {
+            slide.style.transform = `translateX(-${index * container.offsetWidth}px)`;
           }
 
-          const name = document.createElement("h4");
-          name.textContent = product.name;
+          leftBtn.onclick = () => {
+            index = (index - 1 + items.length) % items.length;
+            updateSlide();
+          };
 
-          const price = document.createElement("p");
-          price.textContent = product.price;
+          rightBtn.onclick = () => {
+            index = (index + 1) % items.length;
+            updateSlide();
+          };
 
-          const condition = document.createElement("p");
-          condition.textContent = product.condition;
+          // Mobile swipe
+          let startX = 0;
+          let isSwiping = false;
 
-          productDiv.appendChild(name);
-          productDiv.appendChild(price);
-          productDiv.appendChild(condition);
+          slide.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            isSwiping = true;
+          });
 
-          grid.appendChild(productDiv);
+          slide.addEventListener('touchmove', (e) => {
+            if (!isSwiping) return;
+            const currentX = e.touches[0].clientX;
+            const diff = startX - currentX;
+            slide.style.transform = `translateX(-${index * container.offsetWidth + diff}px)`;
+          });
+
+          slide.addEventListener('touchend', (e) => {
+            if (!isSwiping) return;
+            isSwiping = false;
+            const endX = e.changedTouches[0].clientX;
+            const diff = startX - endX;
+            const threshold = container.offsetWidth / 3;
+            if (Math.abs(diff) > threshold) {
+              index = diff > 0 ? (index + 1) % items.length : (index - 1 + items.length) % items.length;
+            }
+            updateSlide();
+          });
+
+          window.addEventListener("resize", updateSlide);
         });
 
         function enlargeImage(img) {
