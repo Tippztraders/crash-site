@@ -119,14 +119,14 @@
 
           // Swipe gesture for image carousel
           let startX = 0;
-          imageContainer.addEventListener("touchstart", e => {
+          imgElement.addEventListener("touchstart", e => {
             startX = e.touches[0].clientX;
           });
 
-          imageContainer.addEventListener("touchend", e => {
+          imgElement.addEventListener("touchend", e => {
             const endX = e.changedTouches[0].clientX;
             const diff = endX - startX;
-
+          
             if (Math.abs(diff) > 30 && imageList.length > 1) {
               currentIndex = (diff < 0)
                 ? (currentIndex + 1) % imageList.length
