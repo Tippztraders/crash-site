@@ -144,61 +144,88 @@
       window.open(img.src, '_blank');
     }
 
-    document.querySelectorAll('.carousel-container').forEach(container => {
-      const slide = container.querySelector('.carousel-slide');
-      const items = container.querySelectorAll('.carousel-item');
-      const totalItems = items.length;
-      let currentIndex = 0;
-      let startX = 0;
-      let currentX = 0;
-      let isSwiping = false;
+    <script>
+  // --- Select carousel container and related elements ---
+  document.querySelectorAll('.carousel-container').forEach(container => {
+    const slide = container.querySelector('.carousel-slide');
+    const items = container.querySelectorAll('.carousel-item');
+    const totalItems = items.length;
+    let currentIndex = 0;
 
-      function updateSlide() {
-        const itemWidth = items[0].offsetWidth;
-        slide.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+    // --- Variables to track touch/swipe state ---
+    let startX = 0;
+    let currentX = 0;
+    let isSwiping = false;
+    let isTap = true; // To detect tap vs swipe
+
+    // --- Function to update carousel position ---
+    function updateSlide() {
+      const itemWidth = items[0].offsetWidth;
+      slide.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+    }
+
+    // --- Function to go to specific slide index with wrap-around ---
+    function goToSlide(index) {
+      if (index < 0) {
+        index = totalItems - 1;
+      } else if (index >= totalItems) {
+        index = 0;
+      }
+      currentIndex = index;
+      updateSlide();
+    }
+
+    // --- Touch start: initialize variables ---
+    slide.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      isSwiping = true;
+      isTap = true; // Assume tap until moved enough
+    });
+
+    // --- Touch move: handle swipe and check if movement exceeds tap threshold ---
+    slide.addEventListener('touchmove', (e) => {
+      if (!isSwiping) return;
+      currentX = e.touches[0].clientX;
+      const diff = startX - currentX;
+
+      if (Math.abs(diff) > 10) {
+        isTap = false; // Moved more than 10px, so it's a swipe
       }
 
-      function goToSlide(index) {
-        if (index < 0) {
-          index = totalItems - 1;
-        } else if (index >= totalItems) {
-          index = 0;
+      const itemWidth = items[0].offsetWidth;
+      slide.style.transform = `translateX(-${currentIndex * itemWidth + diff}px)`;
+    });
+
+    // --- Touch end: decide whether it was a tap or swipe and act accordingly ---
+    slide.addEventListener('touchend', (e) => {
+      if (!isSwiping) return;
+      isSwiping = false;
+      const diff = startX - currentX;
+      const itemWidth = items[0].offsetWidth;
+
+      if (isTap) {
+        // Tap detected — open the tapped image in a new tab
+        const touch = e.changedTouches[0];
+        const tappedElement = document.elementFromPoint(touch.clientX, touch.clientY);
+        if (tappedElement && tappedElement.tagName === 'IMG') {
+          window.open(tappedElement.src, '_blank');
         }
-        currentIndex = index;
+      } else if (Math.abs(diff) > itemWidth / 3) {
+        // Swipe detected — go to next or previous slide
+        if (diff > 0) {
+          goToSlide(currentIndex + 1);
+        } else {
+          goToSlide(currentIndex - 1);
+        }
+      } else {
+        // Not enough swipe distance — snap back to current slide
         updateSlide();
       }
-
-      slide.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-        isSwiping = true;
-      });
-
-      slide.addEventListener('touchmove', (e) => {
-        if (!isSwiping) return;
-        currentX = e.touches[0].clientX;
-        const diff = startX - currentX;
-        const itemWidth = items[0].offsetWidth;
-        slide.style.transform = `translateX(-${currentIndex * itemWidth + diff}px)`;
-      });
-
-      slide.addEventListener('touchend', () => {
-        if (!isSwiping) return;
-        isSwiping = false;
-        const diff = startX - currentX;
-        const itemWidth = items[0].offsetWidth;
-        if (Math.abs(diff) > itemWidth / 3) {
-          if (diff > 0) {
-            goToSlide(currentIndex + 1);
-          } else {
-            goToSlide(currentIndex - 1);
-          }
-        } else {
-          updateSlide();
-        }
-      });
-
-      window.addEventListener('resize', updateSlide);
     });
-  </script>
+
+    // --- Update carousel layout on window resize ---
+    window.addEventListener('resize', updateSlide);
+  });
+</script> 
 </body>
 </html>
