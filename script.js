@@ -1,24 +1,24 @@
 const products = [
   { 
-    img: ["PH6.jpg", "PH6b.jpg", "PH6c.jpg"], 
+    img: ["PH 6.jpg", "PH 6b.jpg", "PH 6c.jpg"], 
     name: "32L Samsung Microwave", 
     price: "N$1,250", 
     condition: "Trendsetter" 
   },
   { 
-    img: "PH3a.jpg", 
+    img: "PH 7.jpg", 
     name: "Office Chair #3", 
     price: "N$750", 
     condition: "Well-Maintained" 
   },
   { 
-    img: "PH1.jpg", 
+    img: "PH 8.jpg", 
     name: "Office Chair #1", 
     price: "N$650", 
     condition: "Well-Maintained" 
   },
   { 
-    img: "PH6.jpg", 
+    img: "PH 9.jpg", 
     name: "Kitchen Sink", 
     price: "N$1,250", 
     condition: "Well-Maintained" 
@@ -31,7 +31,7 @@ products.forEach((product, index) => {
   const card = document.createElement('div');
   card.className = 'product-card';
 
-  // Image Swiper Container
+  // Swiper container
   const swiperContainer = document.createElement('div');
   swiperContainer.className = `swiper mySwiper swiper-${index}`;
 
@@ -43,11 +43,16 @@ products.forEach((product, index) => {
     const slide = document.createElement('div');
     slide.className = 'swiper-slide';
 
+    const zoomContainer = document.createElement('div');
+    zoomContainer.className = 'swiper-zoom-container';
+
     const img = document.createElement('img');
     img.src = src;
     img.alt = product.name;
-    slide.appendChild(img);
+    img.loading = 'lazy'; // lazy load image
 
+    zoomContainer.appendChild(img);
+    slide.appendChild(zoomContainer);
     swiperWrapper.appendChild(slide);
   });
 
@@ -65,15 +70,15 @@ products.forEach((product, index) => {
 
   container.appendChild(card);
 
-  // Init Swiper for each product
+  // Init Swiper
   new Swiper(`.swiper-${index}`, {
     loop: true,
     spaceBetween: 10,
     slidesPerView: 1,
+    zoom: true,
     pagination: {
       el: '.swiper-pagination',
-      clickable: true,
-    },
-    zoom: true
+      clickable: true
+    }
   });
 });
