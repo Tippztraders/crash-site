@@ -1,4 +1,3 @@
-/* Header */
 header {
   background-color: yellow;
   height: 2cm;
@@ -7,41 +6,24 @@ header {
   line-height: 2cm;
 }
 
-/* Main body */
 main {
   background: linear-gradient(white, green);
   padding: 20px;
 }
 
-/* Product Grid */
-#products-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-/* Product Card Styling */
 .product-card {
   background: #fff;
   border: 1px solid #ccc;
+  margin-bottom: 20px;
   padding: 10px;
   border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* Swiper Styling */
 .swiper {
   width: 100%;
+  max-width: 300px;
   height: auto;
   margin-bottom: 10px;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .swiper-slide img {
@@ -50,13 +32,6 @@ main {
   border-radius: 5px;
 }
 
-/* Zoom Container (important for fullscreen swipe+zoom) */
-.swiper-zoom-container img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Footer */
 footer {
   background-color: black;
   color: white;
