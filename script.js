@@ -1,24 +1,24 @@
 const products = [
   { 
-    img: ["PH6.jpg", "PH6b.jpg", "PH6c.jpg"], 
+    img: ["PH 6.jpg", "PH 6b.jpg", "PH 6c.jpg"], 
     name: "32L Samsung Microwave", 
     price: "N$1,250", 
     condition: "Trendsetter" 
   },
   { 
-    img: "PH10a.jpg", 
+    img: "PH 7.jpg", 
     name: "Office Chair #3", 
     price: "N$750", 
     condition: "Well-Maintained" 
   },
   { 
-    img: "PH1.jpg", 
+    img: "PH 8.jpg", 
     name: "Office Chair #1", 
     price: "N$650", 
     condition: "Well-Maintained" 
   },
   { 
-    img: "PH10b.jpg", 
+    img: "PH 9.jpg", 
     name: "Kitchen Sink", 
     price: "N$1,250", 
     condition: "Well-Maintained" 
@@ -27,38 +27,53 @@ const products = [
 
 const container = document.getElementById('products-container');
 
-products.forEach(product => {
+products.forEach((product, index) => {
   const card = document.createElement('div');
   card.className = 'product-card';
 
-  // Create image area
-  const imgContainer = document.createElement('div');
-  imgContainer.className = 'img-container';
+  // Image Swiper Container
+  const swiperContainer = document.createElement('div');
+  swiperContainer.className = `swiper mySwiper swiper-${index}`;
 
-  if (Array.isArray(product.img)) {
-    product.img.forEach(src => {
-      const img = document.createElement('img');
-      img.src = src;
-      img.className = 'product-img';
-      imgContainer.appendChild(img);
-    });
-  } else {
+  const swiperWrapper = document.createElement('div');
+  swiperWrapper.className = 'swiper-wrapper';
+
+  const images = Array.isArray(product.img) ? product.img : [product.img];
+  images.forEach(src => {
+    const slide = document.createElement('div');
+    slide.className = 'swiper-slide';
+
     const img = document.createElement('img');
-    img.src = product.img;
-    img.className = 'product-img';
-    imgContainer.appendChild(img);
-  }
+    img.src = src;
+    img.alt = product.name;
+    slide.appendChild(img);
 
-  // Create text info
+    swiperWrapper.appendChild(slide);
+  });
+
+  swiperContainer.appendChild(swiperWrapper);
+  card.appendChild(swiperContainer);
+
+  // Product Info
   const info = document.createElement('div');
   info.innerHTML = `
     <h3>${product.name}</h3>
     <p>Price: ${product.price}</p>
     <p>Condition: ${product.condition}</p>
   `;
-
-  card.appendChild(imgContainer);
   card.appendChild(info);
-  container.appendChild(card);
-});
 
+  container.appendChild(card);
+
+  // Init Swiper for each product
+  new Swiper(`.swiper-${index}`, {
+    loop: true,
+    spaceBetween: 10,
+    slidesPerView: 1,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    zoom: true
+  });
+});
