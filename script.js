@@ -1,122 +1,94 @@
 const products = [
   {
-    img: "PH1.jpg",
-    name: "White Office Chair",
-    price: "N$850",
-    condition: "Well-Maintained"
+    images: ['PH10a.jpg', 'PH10b.jpg', 'PH10c.jpg'],
+    name: 'Product 1',
+    desc: 'Short description for product 1.',
+    price: '$29.99'
   },
   {
-    img: "PH2.jpg",
-    name: "32L Samsung Microwave",
-    price: "N$950",
-    condition: "Trendsetter"
-  },
-  {
-    img: ["PH3a.jpg", "PH3b.jpg", "PH3c.jpg"],
-    name: "Electrical Frying Pan",
-    price: "N$450",
-    condition: "Well-Maintained"
-  },
-  {
-    img: "PH4.jpg",
-    name: "Traditional Pot #3",
-    price: "N$350",
-    condition: "Well-Maintained"
-  },
-  {
-    img: "PH5.jpg",
-    name: "Traditional Pot #2",
-    price: "N$250",
-    condition: "Well-Maintained"
-  },
-  {
-    img: ["PH6a.jpg", "PH6b.jpg", "PH6c.jpg"],
-    name: "32L Samsung Microwave",
-    price: "N$1,250",
-    condition: "Trendsetter"
-  },
-  {
-    img: "PH7.jpg",
-    name: "Office Chair #3",
-    price: "N$750",
-    condition: "Well-Maintained"
-  },
-  {
-    img: "PH8.jpg",
-    name: "Office Chair #1",
-    price: "N$650",
-    condition: "Well-Maintained"
-  },
-  {
-    img: "PH9.jpg",
-    name: "Kitchen Sink",
-    price: "N$1,250",
-    condition: "Well-Maintained"
-  },
-  {
-    img: ["PH10a.jpg", "PH10b.jpg"],
-    name: "Event Tables",
-    price: "N$2,700",
-    condition: "Well-Maintained"
-  },
-  {
-    img: ["PH11a.jpg", "PH11b.jpg"],
-    name: "Assorted Fabric",
-    price: "N$20 per meter",
-    condition: "Various Colors"
-  },
-  {
-    img: "PH12.jpg",
-    name: "Mirror #1",
-    price: "N$1,250",
-    condition: "Well-Maintained"
+    images: ['PH3a.jpg', 'PH3b.jpg', 'PH3c.jpg'],
+    name: 'Product 2',
+    desc: 'Short description for product 2.',
+    price: '$39.99'
   }
+  // Add more products here
 ];
 
-const container = document.getElementById('products-container');
+const container = document.getElementById('product-container');
 
 products.forEach((product, index) => {
-  const card = document.createElement('div');
-  card.className = 'product-card';
+  const productCard = document.createElement('div');
+  productCard.className = 'product-card';
 
-  // Swiper container
-  const swiperContainer = document.createElement('div');
-  swiperContainer.className = `swiper mySwiper swiper-${index}`;
+  const swiperId = `swiper-${index}`;
 
-  const swiperWrapper = document.createElement('div');
-  swiperWrapper.className = 'swiper-wrapper';
+  const imagesHTML = product.images.map((src, i) => `
+    <div class="swiper-slide">
+      <div class="swiper-zoom-container">
+        <img src="${src}" alt="${product.name}" onclick="openFullGallery(${index}, ${i})" />
+      </div>
+    </div>
+  `).join('');
 
-  const images = Array.isArray(product.img) ? product.img : [product.img];
-  images.forEach(src => {
-    const slide = document.createElement('div');
-    slide.className = 'swiper-slide';
-
-    const img = document.createElement('img');
-    img.src = src;
-    img.alt = product.name;
-
-    slide.appendChild(img);
-    swiperWrapper.appendChild(slide);
-  });
-
-  swiperContainer.appendChild(swiperWrapper);
-  card.appendChild(swiperContainer);
-
-  // Product Info
-  const info = document.createElement('div');
-  info.innerHTML = `
-    <h3>${product.name}</h3>
-    <p>Price: ${product.price}</p>
-    <p>Condition: ${product.condition}</p>
+  productCard.innerHTML = `
+    <div class="swiper product-swiper" id="${swiperId}">
+      <div class="swiper-wrapper">
+        ${imagesHTML}
+      </div>
+    </div>
+    <h2>${product.name}</h2>
+    <p class="description">${product.desc}</p>
+    <p class="price">${product.price}</p>
+    <button>Add to Cart</button>
   `;
-  card.appendChild(info);
 
-  container.appendChild(card);
+  container.appendChild(productCard);
+});
 
-  // Init Swiper
-  new Swiper(`.swiper-${index}`, {
-    loop: true,
-    spaceBetween: 10,
-    slidesPerView: 1
+// Activate all Swipers
+window.addEventListener('load', () => {
+  document.querySelectorAll('.product-swiper').forEach(swiperEl => {
+    new Swiper(swiperEl, {
+      zoom: true,
+      loop: true,
+      slidesPerView: 1,
+      spaceBetween: 10
+    });
   });
 });
+
+let fullGallerySwiper = null;
+
+function openFullGallery(productIndex, startAt = 0) {
+  const product = products[productIndex];
+  const wrapper = document.getElementById('fullGalleryWrapper');
+  wrapper.innerHTML = product.images.map(src => `
+    <div class="swiper-slide">
+      <div class="swiper-zoom-container">
+        <img src="${src}" alt="Full Image" />
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('fullGalleryModal').classList.add('active');
+
+  if (fullGallerySwiper) {
+    fullGallerySwiper.destroy(true, true);
+  }
+
+  fullGallerySwiper = new Swiper('#fullGallerySwiper', {
+    zoom: true,
+    loop: true,
+    slidesPerView: 1,
+    initialSlide: startAt,
+    spaceBetween: 10
+  });
+}
+
+function closeFullGallery() {
+  document.getElementById('fullGalleryModal').classList.remove('active');
+  if (fullGallerySwiper) {
+    fullGallerySwiper.destroy(true, true);
+    fullGallerySwiper = null;
+  }
+}
