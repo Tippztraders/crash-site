@@ -1,24 +1,24 @@
 const products = [
   { 
-    img: ["PH 6.jpg", "PH 6b.jpg", "PH 6c.jpg"], 
+    img: ["PH6.jpg", "PH6b.jpg", "PH6c.jpg"], 
     name: "32L Samsung Microwave", 
     price: "N$1,250", 
     condition: "Trendsetter" 
   },
   { 
-    img: "PH 7.jpg", 
+    img: "PH3a.jpg", 
     name: "Office Chair #3", 
     price: "N$750", 
     condition: "Well-Maintained" 
   },
   { 
-    img: "PH 8.jpg", 
+    img: "PH1.jpg", 
     name: "Office Chair #1", 
     price: "N$650", 
     condition: "Well-Maintained" 
   },
   { 
-    img: "PH 9.jpg", 
+    img: "PH6.jpg", 
     name: "Kitchen Sink", 
     price: "N$1,250", 
     condition: "Well-Maintained" 
