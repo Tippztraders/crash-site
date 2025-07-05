@@ -1,59 +1,24 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: calibri;
+/* Header */
+header {
+  background-color: yellow;
+  height: 2cm;
+  width: 100px; /* NOTE: You wrote 'length 100x px' — assuming you meant 100px width */
+  text-align: center;
+  line-height: 2cm;
 }
 
-body{
-    background-color: salmon;
+/* Main body */
+main {
+  background: linear-gradient(white, green);
+  padding: 20px;
 }
 
-.container{
-    width: 100%;
-    margin-top: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.card{
-    width: 300px;
-    height: 250px;
-    background-color: white;
-    transition: 0.5s;
-    margin: 50px;
-}
-
-.card .img{
-    width: 260px;
-    height: 260px;
-    position: relative;
-    z-index: 1;
-    top:-50px;
-    left: 20px;
-}
-
-.card .img img{
-    width: 100%;
-    height: 100%;
-}
-
-.card .content{
-    width: 100%;
-    text-align: center;
-    padding: 2px;
-    transform: translateY(-150px);
-    opacity: 0;
-}
-
-.card:hover{
-    height: 350px;
-}
-
-.card:hover .content{
-    opacity: 1;
-    transform: translateY(-40px);
-    transition: 0.5s;
+/* Footer */
+footer {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+  text-shadow: 1px 0 yellow, 0 1px yellow, -1px 0 yellow, 0 -1px yellow;
 }
