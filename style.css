@@ -2,7 +2,7 @@
 header {
   background-color: yellow;
   height: 2cm;
-  width: 100px; /* NOTE: You wrote 'length 100x px' — assuming you meant 100px width */
+  width: 100px; /* You can change this to 100% if you want full width */
   text-align: center;
   line-height: 2cm;
 }
@@ -11,6 +11,29 @@ header {
 main {
   background: linear-gradient(white, green);
   padding: 20px;
+}
+
+/* Product Card Styling */
+.product-card {
+  background: #fff;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* Swiper Styling */
+.swiper {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
 }
 
 /* Footer */
