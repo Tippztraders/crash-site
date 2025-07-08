@@ -276,3 +276,9 @@ footer hr {
   background-color: transparent;
   color: yellow;
 }
+
+.container {
+  max-width: 480px;    /* max width like a phone screen */
+  margin: 0 auto;      /* center horizontally */
+  padding: 0 10px;     /* some side padding */
+}
