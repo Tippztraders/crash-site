@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tippz Cash Traders</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Lightbox Styles -->
+  <style>
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 75vh;
+      border-radius: 10px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px; right: 30px;
+      color: white;
+      font-size: 2em;
+      cursor: pointer;
+    }
+
+    .lightbox-dots {
+      margin-top: 1em;
+      display: flex;
+      gap: 10px;
+    }
+
+    .lightbox-dots div {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #666;
+      cursor: pointer;
+    }
+
+    .lightbox-dots .active {
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header id="home">
+    <div class="logo-section">
+      <h1 class="stroked-text">Tippz Cash Traders</h1>
+      <img src="Logo.jpeg" alt="Logo" class="logo-img"/>
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <button><i class="fas fa-search"></i></button>
+    </div>
+    <nav>
+      <ul class="nav-row">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#featured">Products</a></li>
+        <li><a href="#donations">Donations</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <main>
+    <section class="hero">
+      <h2>Quality Pre-owned Items at Great Prices.</h2>
+      <p>Discover amazing deals on carefully selected second-hand products.</p>
+      <a href="#item1" class="cta-button">Shop Now</a>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured" id="featured">
+      <h3>Featured Products</h3>
+      <div class="product-grid"></div>
+    </section>
+
+    <!-- Donations Section -->
+    <section id="donations" class="donations">
+      <h3>Donations Section</h3>
+      <p>Support our mission by donating usable items. "Making a Difference with Simple Acts of Kindness".</p>
+    </section>
+
+    <section class="donation-gallery" style="max-width: 600px; margin: 2em auto;">
+      <div class="donation-grid">
+        <div class="donation-item">
+          <img src="donation1.jpg" alt="Donation 1" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
+        </div>
+        <div class="donation-item">
+          <img src="donation2.jpg" alt="Donation 2" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
+        </div>
+        <div class="donation-item">
+          <img src="donation3.jpg" alt="Donation 3" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
+        </div>
+        <div class="donation-item">
+          <img src="donation4.jpg" alt="Donation 4" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox Element -->
+    <div class="lightbox" id="lightbox">
+      <span class="close-btn" onclick="closeLightbox()">&times;</span>
+      <img id="lightboxImage" src="" alt="Product View" />
+      <div class="lightbox-dots" id="lightboxDots"></div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="footer-section about" id="about">
+      <h4>About Tippz Cash Traders</h4>
+      <p>We're dedicated to giving quality items a second chance while helping you save money and reduce waste.</p>
+    </div>
+    <div class="footer-section links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#featured">Products</a></li>
+        <li><a href="#donations">Our Donation Section</a></li>
+        <li>About Us</li>
+      </ul>
+    </div>
+    <div class="footer-section contact">
+      <h4>Contact Info</h4>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:tippzcashtraders@gmail.com">tippzcashtraders@gmail.com</a></p>
+      <p><i class="fas fa-phone"></i> <a href="tel:+264817859603">+264817859603</a></p>
+    </div>
+   <div class="footer-section social">
+      <h4>Follow Us</h4>
+      <p><a href="https://www.facebook.com/share/1CRCKL5zVH/" target="_blank">Facebook</a></p>
+<button onclick="window.location.href='disclaimer.html'" class="disclaimer-btn">Disclaimer</button>
+</div> 
+    </div>
+    <hr />
+    <p class="copyright">© 2025 Tippz Cash Traders. All rights reserved.</p>
+  </footer>
+  <!-- JS file -->
+  <script src="script.js"></script>
+</body>
+</html>
