@@ -201,11 +201,15 @@ footer a {
   border-radius: 8px;
 }
 
-.donation-item p {
-  margin-top: 0.5em;
+.donation-label {
+  text-align: center;
   font-weight: bold;
   font-style: normal;
-  color: #555;
+  color: #333;
+  font-size: 0.9em;
+  margin-top: 0.5em;
+}
+
 }
 
 footer hr {
