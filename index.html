@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <!-- Custom banner header style -->
   <style>
     .container {
       max-width: 480px;
@@ -18,10 +17,7 @@
     }
 
     .banner-header {
-      position: relative;
       width: 100%;
-      max-height: 200px;
-      overflow: hidden;
     }
 
     .banner-header img {
@@ -30,40 +26,30 @@
       display: block;
     }
 
-    .banner-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+    .below-banner-content {
       text-align: center;
-      color: white;
-      background: rgba(0, 0, 0, 0.4);
+      margin-top: 1em;
     }
 
-    .banner-overlay h1 {
+    .below-banner-content h1 {
       font-size: 1.5em;
-      margin: 0.2em 0;
-      text-shadow: 1px 1px 2px black;
+      margin-bottom: 0.5em;
     }
 
-    .banner-overlay .search-bar {
+    .search-bar {
       display: flex;
-      margin-top: 0.5em;
+      justify-content: center;
+      margin-bottom: 0.5em;
     }
 
-    .banner-overlay input[type="text"] {
+    .search-bar input[type="text"] {
       padding: 6px;
-      border: none;
+      border: 1px solid #ccc;
       border-radius: 4px 0 0 4px;
       width: 150px;
     }
 
-    .banner-overlay button {
+    .search-bar button {
       padding: 6px 10px;
       border: none;
       border-radius: 0 4px 4px 0;
@@ -72,14 +58,18 @@
       cursor: pointer;
     }
 
-    .banner-overlay .nav {
-      margin-top: 0.5em;
+    .nav-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      list-style: none;
+      padding: 0;
+      margin: 0.5em 0 1em;
     }
 
-    .banner-overlay .nav a {
-      margin: 0 10px;
-      color: white;
+    .nav-row li a {
       text-decoration: none;
+      color: #333;
       font-weight: bold;
     }
 
@@ -129,25 +119,30 @@
   </style>
 </head>
 <body>
-  <!-- 🖼️ Banner Header -->
+
+  <!-- 🖼️ Full-color Banner -->
   <div class="banner-header">
     <img src="HEADER.jpg" alt="Header Banner">
-    <div class="banner-overlay">
-      <h1>Tippz Cash Traders</h1>
-      <div class="search-bar">
-        <input type="text" placeholder="Search...">
-        <button><i class="fas fa-search"></i></button>
-      </div>
-      <div class="nav">
-        <a href="#home">Home</a>
-        <a href="#featured">Products</a>
-      </div>
+  </div>
+
+  <!-- 🧾 Text + Buttons below banner -->
+  <div class="below-banner-content">
+    <h1>Tippz Cash Traders</h1>
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <button><i class="fas fa-search"></i></button>
     </div>
+    <ul class="nav-row">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#featured">Products</a></li>
+      <li><a href="#donations">Donations</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
   </div>
 
   <div class="container">
     <main>
-      <section class="hero">
+      <section class="hero" id="home">
         <h2>Quality Pre-owned Items at Great Prices.</h2>
         <p>Discover amazing deals on carefully selected second-hand products.</p>
         <a href="#item1" class="cta-button">Shop Now</a>
