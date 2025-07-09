@@ -56,7 +56,7 @@ const products = [
   {
     images: ["PH10a.jpg", "PH10b.jpg"],
     name: "Event Tables",
-    price: "N$2,700",
+    price: "N$2,900",
     condition: "Excellent Condition"
   },
   {
