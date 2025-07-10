@@ -1,10 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tippz Cash Traders</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+</head>
 <body>
   <!-- Banner Header -->
   <div class="banner-header">
-    <img src="HEADER.jpg" alt="Header Banner">
+    <img src="HEADER.jpg" alt="Header Banner" />
   </div>
 
-  <!-- Navigation Below Banner -->
+  <!-- Navigation Below Banner (search removed) -->
   <div class="nav-below-banner">
     <h1 class="stroked-text">Tippz Cash Traders</h1>
     <div class="nav">
@@ -28,33 +40,30 @@
         <div class="product-grid" id="product-container"></div>
       </section>
 
-      <div class="donation-gallery-wrapper">
-        <section id="donations" class="donations">
-          <h3 style="text-align: center;">Donations Section</h3>
-          <p style="text-align: center;">Support our mission by donating usable items. "Making a Difference with Simple Acts of Kindness".</p>
-          <div class="donation-gallery">
-            <div class="donation-grid">
-              <!-- Donation items go here -->
-              <div class="donation-item">
-                <img src="don1.jpg" alt="Donation 1" onclick="enlargeImage(this)" />
-                <p class="donation-label">Donate in this space</p>
-              </div>
-              <div class="donation-item">
-                <img src="don2.jpg" alt="Donation 2" onclick="enlargeImage(this)" />
-                <p class="donation-label">Donate in this space</p>
-              </div>
-              <div class="donation-item">
-                <img src="don3.jpg" alt="Donation 3" onclick="enlargeImage(this)" />
-                <p class="donation-label">Not for donation</p>
-              </div>
-              <div class="donation-item">
-                <img src="don4.jpg" alt="Donation 4" onclick="enlargeImage(this)" />
-                <p class="donation-label">Donate in this space</p>
-              </div>
+      <section id="donations" class="donation-section">
+        <h3>Donations Section</h3>
+        <p>Support our mission by donating usable items. "Making a Difference with Simple Acts of Kindness".</p>
+        <div class="donation-gallery">
+          <div class="donation-grid">
+            <div class="donation-item">
+              <img src="don1.jpg" alt="Donation 1" onclick="enlargeImage(this)" />
+              <p class="donation-label">Donate in this space</p>
+            </div>
+            <div class="donation-item">
+              <img src="don2.jpg" alt="Donation 2" onclick="enlargeImage(this)" />
+              <p class="donation-label">Donate in this space</p>
+            </div>
+            <div class="donation-item">
+              <img src="don3.jpg" alt="Donation 3" onclick="enlargeImage(this)" />
+              <p class="donation-label">Not for donation</p>
+            </div>
+            <div class="donation-item">
+              <img src="don4.jpg" alt="Donation 4" onclick="enlargeImage(this)" />
+              <p class="donation-label">Donate in this space</p>
             </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
 
       <div class="lightbox" id="lightbox">
         <span class="close-btn" onclick="closeLightbox()">&times;</span>
@@ -64,3 +73,35 @@
       </div>
     </main>
   </div>
+
+  <footer id="contact">
+    <div class="footer-section about" id="about">
+      <h4>About Tippz Cash Traders</h4>
+      <p>We're dedicated to giving quality items a second chance while helping you save money and reduce waste.</p>
+    </div>
+    <div class="footer-section links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#featured">Products</a></li>
+        <li><a href="#donations">Our Donation Section</a></li>
+        <li>About Us</li>
+      </ul>
+    </div>
+    <div class="footer-section contact">
+      <h4>Contact Info</h4>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:tippzcashtraders@gmail.com">tippzcashtraders@gmail.com</a></p>
+      <p><i class="fas fa-phone"></i> <a href="tel:+264817859603">+264817859603</a></p>
+    </div>
+    <div class="footer-section social">
+      <h4>Follow Us</h4>
+      <p><a href="https://www.facebook.com/share/1CRCKL5zVH/" target="_blank">Facebook</a></p>
+      <button onclick="window.location.href='disclaimer.html'" class="disclaimer-btn">Disclaimer</button>
+    </div>
+    <hr />
+    <p class="copyright">© 2025 Tippz Cash Traders. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
