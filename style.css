@@ -331,3 +331,19 @@ footer hr {
   background-color: transparent;
   color: yellow;
 }
+
+.banner-header {
+  max-width: 480px;
+  margin: 0 auto;
+  overflow: hidden; /* prevent image overflow */
+  border-radius: 6px; /* optional rounded corners */
+}
+
+.banner-header img {
+  width: 100% !important; /* force full width */
+  height: auto !important; /* maintain aspect ratio */
+  max-height: 160px !important; /* limit max height */
+  object-fit: cover !important; /* crop if needed */
+  display: block; /* remove inline gap */
+}
+
