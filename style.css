@@ -42,7 +42,7 @@ footer {
 .banner-header img {
   width: 200%;
   height: auto;
-  max-height: 200px; /* 👈 change this number to adjust height */
+  max-height: 10px; /* 👈 change this number to adjust height */
   object-fit: cover;
   border-radius: 6px; /* optional: for rounded corners */
 }
