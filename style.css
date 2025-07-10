@@ -39,12 +39,13 @@ footer {
   font-weight: bold;
 }
 
+/* UPDATED HEADER IMAGE */
 .banner-header img {
-  width: 200%;
-  height: auto;
-  max-height: 10px; /* 👈 change this number to adjust height */
-  object-fit: cover;
-  border-radius: 6px; /* optional: for rounded corners */
+  width: 100%;      /* full width of container */
+  height: auto;     /* keep aspect ratio */
+  max-height: 160px; /* max height to fit nicely */
+  object-fit: cover; /* crop if needed */
+  border-radius: 6px; /* optional rounded corners */
 }
 
 .container {
@@ -330,4 +331,3 @@ footer hr {
   background-color: transparent;
   color: yellow;
 }
-
