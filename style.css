@@ -17,10 +17,13 @@ body {
   text-align: center;
 }
 
-.banner-header img {
-  width: 100%;
-  height: auto;
-  display: block;
+.banner-header,
+.nav-below-banner,
+footer {
+  max-width: 480px;
+  margin: 0 auto;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 .nav-below-banner {
