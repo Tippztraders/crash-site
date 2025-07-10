@@ -54,10 +54,12 @@ const products = [
     condition: "Well-Maintained"
   },
   {
-    images: ["PH10a.jpg", "PH10b.jpg"],
-    name: "Event Tables",
-    price: "N$2,900",
-    condition: "Excellent Condition"
+    images: ["PH10a.jpg", "PH10b.jpg", "PH10c.jpg"],
+    name: "Event Tables Combo",
+    name: "Was:3550 for both tables",
+    price: "Now only: N$2,900",
+    name: "Kickstart your dream business today",
+    condition: "Pre-Loved"
   },
   {
     images: ["PH11a.jpg", "PH11b.jpg", "PH11c.jpg", "PH11d.jpg", "PH11e.jpg"],
