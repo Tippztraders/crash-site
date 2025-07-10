@@ -55,10 +55,8 @@ const products = [
   },
   {
     images: ["PH10a.jpg", "PH10b.jpg", "PH10c.jpg"],
-    name: "Event Tables Combo",
-    name: "Was:3550 for both tables",
+    name: "Event Tables Combo:Kickstart your dream business today;Was:3550 for both tables",
     price: "Now only: N$2,900",
-    name: "Kickstart your dream business today",
     condition: "Pre-Loved"
   },
   {
