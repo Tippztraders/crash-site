@@ -6,51 +6,40 @@ body {
 
 .stroked-text {
   color: white;
-  text-shadow: 2px 2px 4px #000;
-}
-
-header {
-  background: linear-gradient(to right, green, yellow);
-  padding: 1em;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0.5em 0;
   text-align: center;
 }
 
-.logo-img {
-  max-width: 100px;
+.banner-header img {
+  width: 100%;
+  height: auto;
   display: block;
-  margin: 1em auto;
-  background-color: #f0f0f0;
-  border-radius: 8px;
 }
 
-/* 🧼 SEARCH BAR REMOVED COMPLETELY */
-.search-bar {
-  display: none !important;
+.nav-below-banner {
+  background: #fff;
+  padding: 1em 0;
+  text-align: center;
 }
 
-.nav-row {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  background: white;
-  max-width: 900px;
-}
-
-@media (max-width: 600px) {
-  .nav-row li a {
-    font-size: 0.9em;
-    padding: 0.75em;
-  }
-}
-
-.nav-row li a {
+.nav-below-banner .nav a {
+  margin: 0 10px;
+  color: #333;
   text-decoration: none;
-  color: black;
   font-weight: bold;
-  padding: 1em;
+}
+
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 12px;
 }
 
 .hero {
@@ -92,6 +81,7 @@ header {
 .product-card img {
   width: 100%;
   cursor: pointer;
+  border-radius: 8px;
 }
 
 .price {
@@ -122,8 +112,9 @@ header {
 .fa-heart {
   color: #ccc;
   cursor: pointer;
-  font-size: 1.4em;
-  transition: color 0.3s ease;
+  font-size: 1.5em;
+  transition: transform 0.3s ease;
+  user-select: none;
 }
 
 .fa-heart.liked {
@@ -132,42 +123,49 @@ header {
 
 .like-count {
   margin-left: 5px;
+  font-weight: bold;
 }
 
-/* ❤️ Heart burst animation */
-@keyframes fadeBurst {
+.burst-heart {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  width: 20px;
+  height: 20px;
+  background: red;
+  clip-path: polygon(
+    50% 0%, 61% 12%, 75% 12%, 85% 22%, 85% 35%, 75% 45%, 50% 75%, 25% 45%, 15% 35%, 15% 22%, 25% 12%, 39% 12%
+  );
+  opacity: 0.8;
+  animation: burst 0.8s forwards;
+  z-index: 10;
+}
+
+@keyframes burst {
   0% {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 0.8;
+    transform: translate(0, 0) scale(1);
   }
   100% {
     opacity: 0;
-    transform: translateY(-30px);
+    transform: translate(calc(var(--x) * 40px), calc(var(--y) * -40px)) scale(0.5);
   }
 }
 
-.burst-text {
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1em;
-  font-weight: bold;
-  color: red;
-  animation: fadeBurst 1.5s forwards;
-}
-
+/* WhatsApp button */
 .whatsapp-button {
   display: inline-block;
   margin-top: 0.5em;
-  background: green;
+  background: #25d366;
   color: white;
   padding: 0.5em 1em;
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
+  user-select: none;
 }
 
+/* Footer */
 footer {
   background: #000000;
   color: #ccc;
@@ -189,25 +187,29 @@ footer a {
   text-decoration: none;
 }
 
-footer hr {
-  margin-top: 2em;
-  border: 0;
-  border-top: 1px solid #444;
+.donation-section {
+  background-color: #f0fff0; /* Light green */
+  padding: 1.5em 1em 2em 1em;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 2em auto;
+  text-align: center;
 }
 
-/* ✅ Donation Section */
-.donation-gallery-wrapper {
-  background-color: #f0fff0;
-  padding: 1em;
-  border-radius: 8px;
+.donation-section h3 {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+.donation-section p {
+  margin-top: 0;
+  margin-bottom: 1em;
+  font-style: italic;
+  color: #333;
 }
 
 .donation-gallery {
-  background-color: #f0fff0;
-  max-width: 600px;
-  margin: 2em auto;
-  padding: 1em;
-  border-radius: 8px;
+  margin-top: 1em;
 }
 
 .donation-grid {
@@ -228,26 +230,31 @@ footer hr {
   width: 100%;
   cursor: pointer;
   border-radius: 8px;
+  height: auto;
 }
 
 .donation-label {
   text-align: center;
   font-weight: bold;
-  font-style: normal;
   color: #333;
   font-size: 0.9em;
   margin-top: 0.5em;
 }
 
-/* ✅ Lightbox */
+footer hr {
+  margin-top: 2em;
+  border: 0;
+  border-top: 1px solid #444;
+}
+
+/* Lightbox styles */
 .lightbox {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0,0,0,0.9);
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -258,15 +265,16 @@ footer hr {
   max-width: 90%;
   max-height: 75vh;
   border-radius: 10px;
+  user-select: none;
 }
 
 .close-btn {
   position: absolute;
-  top: 20px;
-  right: 30px;
+  top: 20px; right: 30px;
   color: white;
   font-size: 2em;
   cursor: pointer;
+  user-select: none;
 }
 
 .lightbox-dots {
@@ -288,11 +296,10 @@ footer hr {
 }
 
 .lightbox-hint {
-  margin-top: 1em;
-  color: white;
+  margin-top: 0.8em;
+  color: #fff;
   font-size: 1em;
-  text-align: center;
-  animation: fadeBurst 4s forwards;
+  user-select: none;
 }
 
 /* Disclaimer button */
@@ -313,9 +320,3 @@ footer hr {
   color: yellow;
 }
 
-/* Container for small screens */
-.container {
-  max-width: 480px;
-  margin: 0 auto;
-  padding: 0 10px;
-}
