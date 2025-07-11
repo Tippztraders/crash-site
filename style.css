@@ -32,9 +32,9 @@ footer {
 /* Section with company name and nav links */
 .nav-below-banner {
   background: #fff;
-  padding: 1em 0;
+  padding: 1em 0 0.5em 0; /* less bottom padding */
   text-align: center;
-  min-height: 150px;
+  min-height: 120px;      /* optional: reduce height */
 }
 
 /* Navigation links below banner */
