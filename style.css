@@ -71,7 +71,7 @@ footer {
 /* === HERO SECTION (TEXT BELOW HEADER) === */
 .hero {
   text-align: center;           /* Center content */
-  padding: 2em 1em;             /* Vertical and horizontal padding */
+  padding: 1em 0.5em;             /* Vertical and horizontal padding */
   background: white;            /* White background */
 }
 
