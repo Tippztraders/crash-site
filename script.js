@@ -168,7 +168,6 @@ function toggleLike(icon, productIndex) {
     createBurstHearts(icon);
     showLoveText(icon);
   }
-}
 
 // Initialize like buttons from localStorage on load
 function initLikes() {
