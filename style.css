@@ -39,7 +39,7 @@ body {
 /* === NAVIGATION & FOOTER CONTAINERS === */
 .nav-below-banner,
 footer {
-  max-width: 480px;             /* Limit width for nav & footer */
+  max-width: 900px;             /* Limit width for nav & footer */
   margin: 0 auto;               /* Center horizontally */
   padding-left: 12px;           /* Left padding */
   padding-right: 12px;          /* Right padding */
