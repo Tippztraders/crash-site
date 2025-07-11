@@ -125,7 +125,7 @@ function openLightbox(productIndex, imageIndex) {
   currentImageIndex = imageIndex;
   updateLightbox();
   lightbox.style.display = "flex";
-  // Reset swipe tracking
+  document.body.style.overflow = "hidden"; // Prevent background scroll
   startY = null;
   startX = null;
 }
@@ -133,7 +133,12 @@ function openLightbox(productIndex, imageIndex) {
 // Close lightbox
 function closeLightbox() {
   lightbox.style.display = "none";
-}
+  document.body.style.overflow = ""; // Restore scroll
+  // Scroll smoothly back to the product card
+  const productCard = document.getElementById(`item${currentProductIndex + 1}`);
+  if (productCard) {
+    productCard.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
 
 function updateLightbox() {
   const images = products[currentProductIndex].images;
