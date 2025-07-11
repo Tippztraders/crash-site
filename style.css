@@ -63,7 +63,7 @@ footer {
 
 /* === MAIN CONTENT CONTAINER === */
 .container {
-  max-width: 780px;             /* Limit width */
+  max-width: 900px;             /* Limit width */
   margin: 0 auto;               /* Center horizontally */
   padding: 0 12px;              /* Side padding */
 }
