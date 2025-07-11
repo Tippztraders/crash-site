@@ -4,19 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tippz Cash Traders</title>
+
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
 </head>
 <body>
-
-  <!-- Hero Banner -->
+  <!-- Banner Header -->
   <div class="banner-header">
     <img src="HEADER.jpg" alt="Header Banner" />
   </div>
 
-  <!-- Company Name & Navigation -->
+  <!-- Navigation Below Banner (search removed) -->
   <div class="nav-below-banner">
-    <h1 class="stroked-text" style="color: #99ccff;">Tippz Cash Traders</h1>
+    <h1 class="stroked-text">Tippz Cash Traders</h1>
     <div class="nav">
       <a href="#home">Home</a>
       <a href="#featured">Products</a>
@@ -25,24 +27,19 @@
     </div>
   </div>
 
-  <!-- Main Content -->
   <div class="container">
     <main>
-
-      <!-- Hero Section -->
       <section class="hero">
         <h2>Quality Pre-owned Items at Great Prices.</h2>
         <p>Discover amazing deals on carefully selected second-hand products.</p>
         <a href="#item1" class="cta-button">Shop Now</a>
       </section>
 
-      <!-- Product Listing -->
       <section class="featured" id="featured">
         <h3>Featured Products</h3>
         <div class="product-grid" id="product-container"></div>
       </section>
 
-      <!-- Donation Section -->
       <section id="donations" class="donation-section">
         <h3>Donations Section</h3>
         <p>Support our mission by donating usable items. "Making a Difference with Simple Acts of Kindness".</p>
@@ -68,18 +65,15 @@
         </div>
       </section>
 
-      <!-- Lightbox (for image zoom + swipe) -->
       <div class="lightbox" id="lightbox">
         <span class="close-btn" onclick="closeLightbox()">&times;</span>
         <img id="lightboxImage" src="" alt="Product View" />
         <div class="lightbox-dots" id="lightboxDots"></div>
         <div class="lightbox-hint">👉 ⬇️ Swipe to close</div>
       </div>
-
     </main>
   </div>
 
-  <!-- Footer -->
   <footer id="contact">
     <div class="footer-section about" id="about">
       <h4>About Tippz Cash Traders</h4>
@@ -108,8 +102,6 @@
     <p class="copyright">© 2025 Tippz Cash Traders. All rights reserved.</p>
   </footer>
 
-  <!-- JS Script -->
   <script src="script.js"></script>
-
 </body>
 </html>
