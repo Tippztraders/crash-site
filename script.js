@@ -134,28 +134,6 @@ function sendWhatsappMessage(e, productIndex) {
   window.open(url, "_blank");
 }
 
-// Swipe detection
-let startY = null;
-let startX = null;
-
-lightbox.addEventListener('touchstart', e => {
-  startY = e.touches[0].clientY;
-  startX = e.touches[0].clientX;
-});
-
-lightbox.addEventListener('touchmove', e => {
-  if (!startY) return;
-  const y = e.touches[0].clientY;
-  const x = e.touches[0].clientX;
-  const yDiff = y - startY;
-  const xDiff = x - startX;
-
-  if (yDiff > 50 && Math.abs(yDiff) > Math.abs(xDiff)) {
-    closeLightbox();
-    startY = null;
-  }
-});
-
 window.onload = () => {
   initLikes();
 };
