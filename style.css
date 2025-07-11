@@ -334,7 +334,7 @@ footer hr {
 
 /* Updated banner image to fully show top and bottom without being cut */
 .banner-header {
-  max-width: 480px;
+  max-width: 800px;
   margin: 0 auto;
   overflow: hidden;
   border-radius: 6px;
