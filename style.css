@@ -91,12 +91,6 @@ footer {
   text-align: center;           /* Center heading */
 }
 
-/* === FEATURED PRODUCT 2 (Quality Pre-owned Items at Great Prices === */
-.tagline {
-  max-width: 720px;             
-  margin: 0 auto; 
-}
-
 /* GRID CONTAINER FOR PRODUCTS */
 .product-grid {
   display: grid;                /* Use grid layout */
