@@ -50,7 +50,7 @@ footer {
   background: #fff;             /* White background */
   padding: 1em 0;               /* Vertical padding */
   text-align: center;           /* Center text */
-  min-height: 150px;            /* Ensure minimum height */
+  min-height: 50px;            /* Ensure minimum height */
 }
 
 /* NAVIGATION LINKS */
