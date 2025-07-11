@@ -1,175 +1,166 @@
-/* === BODY & BASE STYLES === */
+/* Base styles */
 body {
-  font-family: Arial, sans-serif;  /* Sets font for entire page */
-  margin: 0;                      /* Removes default browser margin */
-  background: #f4f4f4;            /* Light gray background color */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f4f4f4;
 }
 
-/* === COMPANY NAME TEXT WITH STROKE EFFECT === */
+/* Company name text with shadow effect */
 .stroked-text {
-  color: white;                   /* White text */
-  text-shadow:                   /* Black shadows on all 4 sides for stroke effect */
+  color: white;
+  text-shadow:
     -1px -1px 0 #000,
     1px -1px 0 #000,
     -1px 1px 0 #000,
     1px 1px 0 #000;
-  font-size: 2em;                /* Large font size */
-  font-weight: bold;             /* Bold text */
-  margin: 0.5em 0;               /* Vertical spacing */
-  text-align: center;            /* Center aligned */
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0.5em 0;
+  text-align: center;
 }
 
-/* === BANNER HEADER (HERO IMAGE CONTAINER) === */
-.banner-header {
-  max-width: 720px;              /* Max width to limit banner size */
-  margin: 0 auto;                /* Center horizontally */
-  overflow: hidden;              /* Hide overflow content */
-}
-
-/* HERO IMAGE ITSELF */
-.banner-header img {
-  width: 100%;                  /* Image fills container width */
-  height: auto;                 /* Maintain aspect ratio */
-  object-fit: contain;          /* Show entire image, no cropping */
-  border-radius: 0;             /* No rounded corners */
-  display: block;               /* Remove bottom whitespace */
-  max-height: 100%;             /* Prevent oversized height */
-}
-
-/* === NAVIGATION & FOOTER CONTAINERS === */
+/* Header, nav below, and footer wrapper widths */
+.banner-header,
 .nav-below-banner,
 footer {
-  max-width: 480px;             /* Limit width for nav & footer */
-  margin: 0 auto;               /* Center horizontally */
-  padding-left: 12px;           /* Left padding */
-  padding-right: 12px;          /* Right padding */
+  max-width: 720px; /* ← match hero banner width */
+  margin: 0 auto;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
-/* NAVIGATION BLOCK BELOW BANNER */
+/* Section with company name and nav links */
 .nav-below-banner {
-  background: #fff;             /* White background */
-  padding: 1em 0;               /* Vertical padding */
-  text-align: center;           /* Center text */
-  min-height: 150px;            /* Ensure minimum height */
+  background: #fff;
+  padding: 1em 0;
+  text-align: center;
+  min-height: 150px;
 }
 
-/* NAVIGATION LINKS */
+/* Navigation links below banner */
 .nav-below-banner .nav a {
-  margin: 0 10px;               /* Horizontal spacing between links */
-  color: #333;                 /* Dark gray text */
-  text-decoration: none;        /* Remove underline */
-  font-weight: bold;            /* Bold links */
+  margin: 0 10px;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-/* === MAIN CONTENT CONTAINER === */
+/* HERO HEADER image (top banner) */
+.banner-header img {
+  width: 100%;
+  height: auto;
+  object-fit: contain; /* show full image */
+  max-height: none;    /* allow natural height */
+  display: block;
+  margin: 0 auto;
+  border-radius: 0;    /* ← straight corners */
+}
+
+/* Main content block (used for hero, featured, etc) */
 .container {
-  max-width: 480px;             /* Limit width */
-  margin: 0 auto;               /* Center horizontally */
-  padding: 0 12px;              /* Side padding */
+  max-width: 720px; /* ← increased from 480px */
+  margin: 0 auto;
+  padding: 0 12px;
 }
 
-/* === HERO SECTION (TEXT BELOW HEADER) === */
+/* Hero section with tagline + CTA */
 .hero {
-  text-align: center;           /* Center content */
-  padding: 2em 1em;             /* Vertical and horizontal padding */
-  background: white;            /* White background */
+  text-align: center;
+  padding: 2em 1em;
+  background: white;
 }
 
-/* CALL TO ACTION BUTTON */
+/* Big yellow CTA button */
 .cta-button {
-  background: yellow;           /* Yellow background */
-  color: black;                 /* Black text */
-  text-decoration: none;        /* No underline */
-  padding: 0.75em 1.5em;        /* Padding around text */
-  font-weight: bold;            /* Bold text */
-  border-radius: 5px;           /* Rounded corners */
+  background: yellow;
+  color: black;
+  text-decoration: none;
+  padding: 0.75em 1.5em;
+  font-weight: bold;
+  border-radius: 5px;
 }
 
-/* === FEATURED PRODUCTS SECTION === */
+/* Featured section wrapper */
 .featured {
-  padding: 2em 1em;             /* Padding */
-  text-align: center;           /* Center heading */
+  padding: 2em 1em;
+  text-align: center;
 }
 
-/* GRID CONTAINER FOR PRODUCTS */
+/* Product layout */
 .product-grid {
-  display: grid;                /* Use grid layout */
-  grid-template-columns: 1fr;  /* Single column */
-  gap: 1.5em;                  /* Gap between items */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5em;
 }
 
-/* INDIVIDUAL PRODUCT CARD */
+/* Product card style */
 .product-card {
-  background: white;            /* White background */
-  border: 1px solid #ccc;       /* Light gray border */
-  padding: 1em;                 /* Inner padding */
-  border-radius: 8px;           /* Rounded corners */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow */
-  text-align: center;           /* Center content */
-  position: relative;           /* For positioning child elements */
+  background: white;
+  border: 1px solid #ccc;
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-align: center;
+  position: relative;
 }
 
-/* PRODUCT IMAGE */
 .product-card img {
-  width: 100%;                 /* Full card width */
-  cursor: pointer;             /* Pointer cursor on hover */
-  border-radius: 8px;           /* Rounded corners */
+  width: 100%;
+  cursor: pointer;
+  border-radius: 8px;
 }
 
-/* PRICE LABEL */
+/* Price label */
 .price {
-  font-weight: bold;            /* Bold font */
-  margin-top: 0.5em;            /* Spacing from above */
+  font-weight: bold;
+  margin-top: 0.5em;
 }
 
-/* FADED BADGE (e.g., Sale or Special) */
+/* Optional red badge for promo */
 .faded-badge {
-  background: rgba(255, 0, 0, 0.1); /* Transparent red bg */
-  color: red;                  /* Red text */
-  padding: 0.3em 0.6em;        /* Padding */
+  background: rgba(255, 0, 0, 0.1);
+  color: red;
+  padding: 0.3em 0.6em;
   display: inline-block;
-  margin-top: 0.3em;           /* Spacing */
-  border-radius: 4px;           /* Rounded corners */
+  margin-top: 0.3em;
+  border-radius: 4px;
   text-align: left;
 }
 
-/* STATUS TEXT (e.g., condition) */
+/* Text like "excellent condition" */
 .status {
-  font-size: 0.9em;             /* Slightly smaller text */
+  font-size: 0.9em;
   margin-top: 0.3em;
 }
 
-/* LIKE (HEART) SECTION */
+/* Heart + like feature */
 .like-section {
   margin-top: 0.5em;
   position: relative;
 }
 
-/* HEART ICON */
 .fa-heart {
-  color: #ccc;                  /* Gray heart */
-  cursor: pointer;              /* Pointer cursor */
-  font-size: 1.5em;             /* Size */
-  transition: transform 0.3s ease; /* Smooth transform */
-  user-select: none;            /* Prevent text selection */
+  color: #ccc;
+  cursor: pointer;
+  font-size: 1.5em;
+  transition: transform 0.3s ease;
+  user-select: none;
 }
 
-/* HEART ICON WHEN LIKED */
 .fa-heart.liked {
-  color: red;                   /* Red heart */
+  color: red;
 }
 
-/* LIKE COUNT TEXT */
 .like-count {
   margin-left: 5px;
   font-weight: bold;
 }
 
-/* BURST HEART ANIMATION */
+/* Burst heart animation */
 .burst-heart {
   position: absolute;
-  pointer-events: none;         /* Ignore mouse events */
-  user-select: none;            /* Prevent text selection */
+  pointer-events: none;
+  user-select: none;
   width: 20px;
   height: 20px;
   background: red;
@@ -181,7 +172,6 @@ footer {
   z-index: 10;
 }
 
-/* BURST HEART KEYFRAME ANIMATION */
 @keyframes burst {
   0% {
     opacity: 0.8;
@@ -193,11 +183,11 @@ footer {
   }
 }
 
-/* WHATSAPP BUTTON */
+/* WhatsApp order button */
 .whatsapp-button {
   display: inline-block;
   margin-top: 0.5em;
-  background: #25d366;           /* WhatsApp green */
+  background: #25d366;
   color: white;
   padding: 0.5em 1em;
   border-radius: 5px;
@@ -206,20 +196,20 @@ footer {
   user-select: none;
 }
 
-/* === FOOTER STYLES === */
+/* Footer style */
 footer {
-  background: #000000;           /* Black background */
-  color: #ccc;                   /* Light gray text */
-  padding: 2em 1em;              /* Padding */
+  background: #000000;
+  color: #ccc;
+  padding: 2em 1em;
   text-align: center;
 }
 
 footer h4 {
-  color: #ffcc00;                /* Yellow headings */
+  color: #ffcc00;
 }
 
 footer ul {
-  list-style: none;              /* Remove bullet points */
+  list-style: none;
   padding: 0;
 }
 
@@ -228,12 +218,12 @@ footer a {
   text-decoration: none;
 }
 
-/* DONATION SECTION */
+/* Donations block */
 .donation-section {
-  background-color: #f0fff0;     /* Light green background */
+  background-color: #f0fff0;
   padding: 1.5em 1em 2em 1em;
   border-radius: 8px;
-  max-width: 600px;
+  max-width: 720px; /* match rest of body */
   margin: 2em auto;
   text-align: center;
 }
@@ -254,10 +244,9 @@ footer a {
   margin-top: 1em;
 }
 
-/* DONATION GRID */
 .donation-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  grid-template-columns: repeat(2, 1fr);
   gap: 1em;
 }
 
@@ -284,21 +273,20 @@ footer a {
   margin-top: 0.5em;
 }
 
-/* FOOTER HORIZONTAL RULE */
 footer hr {
   margin-top: 2em;
   border: 0;
   border-top: 1px solid #444;
 }
 
-/* === LIGHTBOX (IMAGE POPUP) === */
+/* Lightbox for zoomed image view */
 .lightbox {
-  display: none;                /* Hidden by default */
+  display: none;
   position: fixed;
   top: 0; left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,0.9); /* Dark transparent background */
+  background: rgba(0,0,0,0.9);
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -312,7 +300,7 @@ footer hr {
   user-select: none;
 }
 
-/* CLOSE BUTTON FOR LIGHTBOX */
+/* Close button inside zoom view */
 .close-btn {
   position: absolute;
   top: 20px; right: 30px;
@@ -322,7 +310,6 @@ footer hr {
   user-select: none;
 }
 
-/* DOT INDICATORS BELOW LIGHTBOX IMAGE */
 .lightbox-dots {
   margin-top: 1em;
   display: flex;
@@ -341,7 +328,6 @@ footer hr {
   background: #fff;
 }
 
-/* LIGHTBOX HINT TEXT */
 .lightbox-hint {
   margin-top: 0.8em;
   color: #fff;
@@ -349,7 +335,7 @@ footer hr {
   user-select: none;
 }
 
-/* DISCLAIMER BUTTON */
+/* Disclaimer toggle */
 .disclaimer-btn {
   margin-top: 10px;
   background-color: transparent;
@@ -359,7 +345,6 @@ footer hr {
   font-weight: bold;
   cursor: pointer;
   border-radius: 6px;
-  transition: none;
 }
 
 .disclaimer-btn:hover {
