@@ -63,7 +63,7 @@ footer {
 
 /* === MAIN CONTENT where COMPPANY NAME SEATS === */
 .container {
-  max-width: 900px;             /* Limit width */
+  max-width: 720px;             /* Limit width */
   margin: 0 auto;               /* Center horizontally */
   padding: 0 12px;              /* Side padding */
 }
