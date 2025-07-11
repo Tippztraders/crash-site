@@ -26,9 +26,10 @@ footer {
   padding-right: 12px;
 }
 
+/* This controls the height of the banner where company name seats */
 .nav-below-banner {
   background: #fff;
-  padding: 4em 0;
+  padding: 1em 0;
   text-align: center;
   min-height: 150px;
 }
