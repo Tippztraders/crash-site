@@ -23,7 +23,7 @@ body {
 .banner-header,
 .nav-below-banner,
 footer {
-  max-width: 900px; /* ← match hero banner width */
+  max-width: 720px; /* ← match hero banner width */
   margin: 0 auto;
   padding-left: 12px;
   padding-right: 12px;
@@ -58,7 +58,7 @@ footer {
 
 /* Main content block (used for hero, featured, etc) */
 .container {
-  max-width: 900px; /* ← increased from 480px */
+  max-width: 720px; /* ← increased from 480px */
   margin: 0 auto;
   padding: 0 12px;
 }
