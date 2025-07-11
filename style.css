@@ -7,7 +7,7 @@ body {
 
 /* === COMPANY NAME TEXT WITH STROKE EFFECT === */
 .stroked-text {
-  color: white;                   /* White text */
+  color: #728FCE;                   /* White text */
   text-shadow:                   /* Black shadows on all 4 sides for stroke effect */
     -1px -1px 0 #000,
     1px -1px 0 #000,
@@ -61,7 +61,7 @@ footer {
   font-weight: bold;            /* Bold links */
 }
 
-/* === MAIN CONTENT CONTAINER === */
+/* === MAIN CONTENT where COMPPANY NAME SEATS === */
 .container {
   max-width: 900px;             /* Limit width */
   margin: 0 auto;               /* Center horizontally */
