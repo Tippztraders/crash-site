@@ -23,7 +23,7 @@ body {
 .banner-header,
 .nav-below-banner,
 footer {
-  max-width: 720px; /* ← match hero banner width */
+  max-width: 900px; /* ← match hero banner width */
   margin: 0 auto;
   padding-left: 12px;
   padding-right: 12px;
@@ -58,7 +58,7 @@ footer {
 
 /* Main content block (used for hero, featured, etc) */
 .container {
-  max-width: 720px; /* ← increased from 480px */
+  max-width: 900px; /* ← increased from 480px */
   margin: 0 auto;
   padding: 0 12px;
 }
@@ -223,7 +223,7 @@ footer a {
   background-color: #f0fff0;
   padding: 1.5em 1em 2em 1em;
   border-radius: 8px;
-  max-width: 720px; /* match rest of body */
+  max-width: 900px; /* match rest of body */
   margin: 2em auto;
   text-align: center;
 }
