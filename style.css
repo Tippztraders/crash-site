@@ -69,10 +69,11 @@ footer {
 }
 
 /* === HERO SECTION (TEXT BELOW HEADER) === */
-.hero {
-  text-align: center;           /* Center content */
-  padding: 2em 1em;             /* Vertical and horizontal padding */
-  background: white;            /* White background */
+.hero h1 {
+  font-size: 1.5em;        /* Reduce font size */
+  line-height: 1.3;        /* Tighten spacing */
+  max-width: 720px;        /* Match the rest of your layout */
+  margin: 0 auto;          /* Center it */
 }
 
 /* CALL TO ACTION BUTTON */
