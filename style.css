@@ -47,9 +47,9 @@ footer {
   object-fit: cover; /* crop if needed */
   border-radius: 6px; /* optional rounded corners */
 }
-
+/* This controls the width of the block where the company name is and the nav tools like home etc */
 .container {
-  max-width: 800px;
+  max-width: 480px;
   margin: 0 auto;
   padding: 0 12px;
 }
