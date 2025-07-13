@@ -99,7 +99,7 @@ function renderProducts() {
       <h4>${product.name}</h4>
       <p class="price">${product.price}</p>
       <span class="condition faded-badge">${product.condition}</span>
-      <p class="status ${product.status === 'SOLD' ? 'sold' : ''}">${product.status || "In Stock"}</p> // This changes the Sold badge red 
+      <p class="status ${product.status === 'SOLD' ? 'sold' : ''}">${product.status || "In Stock"}</p> 
       <div class="like-section">
         <i class="fas fa-heart" onclick="toggleLike(this, ${i})"></i>
       </div>
@@ -108,6 +108,16 @@ function renderProducts() {
       </a>
     </div>
   `).join('');
+}
+// This sets the product's availability status
+.status.sold {
+  color: red;
+  font-weight: bold;
+  background: #ffe5e5;
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: inline-block;
+  text-transform: uppercase;
 }
 
 renderProducts();
