@@ -99,7 +99,7 @@ function renderProducts() {
       <h4>${product.name}</h4>
       <p class="price">${product.price}</p>
       <span class="condition faded-badge">${product.condition}</span>
-      <p class="status">In Stock</p>
+      <p class="status">${product.status || "In Stock"}</p>
       <div class="like-section">
         <i class="fas fa-heart" onclick="toggleLike(this, ${i})"></i>
       </div>
