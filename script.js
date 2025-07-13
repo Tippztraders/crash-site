@@ -1,3 +1,5 @@
+// ✅ This is the swipe image + tap-dot-to-close + desktop arrow support code
+
 const products = [
   {
     images: ["PH1.jpg"],
@@ -12,7 +14,7 @@ const products = [
     condition: "Pre-Loved"
   },
   {
-    images: ["PH3a.jpg", "PH3b.jpg", "PH3c.jpg"],
+    images: ["PH3a.jpg", "PH3b.jpg"],
     name: "Electrical Frying Pan",
     price: "N$450",
     condition: "Pre-Loved"
@@ -55,7 +57,7 @@ const products = [
   },
   {
     images: ["PH10a.jpg", "PH10b.jpg", "PH10c.jpg"],
-    name: "Event Tables Combo:Kickstart your dream business today;Was:3550 for both tables",
+    name: "Event Tables Combo: Kickstart your dream business today; Was:3550 for both tables",
     price: "Now only: N$2,900",
     condition: "Pre-Loved"
   },
@@ -78,8 +80,6 @@ const products = [
     condition: "New"
   }
 ];
-
-// Render products with image dots, like button, WhatsApp button
 const productContainer = document.querySelector(".product-grid");
 
 function renderProducts() {
@@ -111,7 +111,7 @@ function renderProducts() {
 
 renderProducts();
 
-// Lightbox Logic
+// Globals for lightbox state
 let currentProductIndex = 0;
 let currentImageIndex = 0;
 
@@ -119,37 +119,89 @@ const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightboxImage");
 const lightboxDots = document.getElementById("lightboxDots");
 
-// Open lightbox and show image at imageIndex
+// Open lightbox at given product and image
 function openLightbox(productIndex, imageIndex) {
   currentProductIndex = productIndex;
   currentImageIndex = imageIndex;
-  updateLightbox();
+  updateLightbox(currentImageIndex);
   lightbox.style.display = "flex";
-  // Reset swipe tracking
-  startY = null;
-  startX = null;
 }
 
-// Close lightbox
-function closeLightbox() {
+// Close lightbox, optionally scroll back to product
+function closeLightbox(scrollBack = false) {
   lightbox.style.display = "none";
+  if (scrollBack) {
+    const target = document.getElementById(`item${currentProductIndex + 1}`);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }
 }
 
-function updateLightbox() {
+// Update lightbox image and dots
+// Accept optional index to show a specific image
+function updateLightbox(imageIndex = null) {
   const images = products[currentProductIndex].images;
+  if (imageIndex !== null) {
+    currentImageIndex = imageIndex;
+  }
   lightboxImage.src = images[currentImageIndex];
 
   lightboxDots.innerHTML = images.map((_, i) => `
-    <div class="${i === currentImageIndex ? 'active' : ''}" onclick="goToImage(${i})"></div>
+    <div class="${i === currentImageIndex ? 'active' : ''}" onclick="updateLightbox(${i})"></div>
   `).join('');
 }
 
-function goToImage(i) {
-  currentImageIndex = i;
-  updateLightbox();
-}
+// Swipe image left/right on mobile
+let startX = null;
 
-// Like button logic with burst hearts and text "I 💖 this 😎"
+lightbox.addEventListener('touchstart', e => {
+  startX = e.touches[0].clientX;
+});
+
+lightbox.addEventListener('touchmove', e => {
+  if (startX === null) return;
+  let x = e.touches[0].clientX;
+  let diffX = x - startX;
+
+  if (Math.abs(diffX) > 50) {
+    const images = products[currentProductIndex].images;
+    if (diffX < 0) {
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+    } else {
+      currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    }
+    updateLightbox();
+    startX = null;
+  }
+});
+
+// Tap anywhere outside the image to close lightbox
+lightbox.addEventListener("click", function (e) {
+  const imageWrapper = document.querySelector(".lightbox-image-wrapper");
+  if (!imageWrapper.contains(e.target)) {
+    closeLightbox(true);
+  }
+});
+
+// Keyboard arrow keys for desktop navigation and escape to close
+document.addEventListener("keydown", e => {
+  if (lightbox.style.display !== "flex") return;
+  const images = products[currentProductIndex].images;
+  if (e.key === "ArrowRight") {
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    updateLightbox();
+  }
+  if (e.key === "ArrowLeft") {
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    updateLightbox();
+  }
+  if (e.key === "Escape") {
+    closeLightbox(true);
+  }
+});
+
+// Like button logic with localStorage and burst hearts
 function toggleLike(icon, productIndex) {
   const likedKey = `liked_${productIndex}`;
   const isLiked = localStorage.getItem(likedKey) === 'true';
@@ -165,11 +217,11 @@ function toggleLike(icon, productIndex) {
   }
 }
 
-// Initialize like buttons from localStorage on load
+// Initialize like buttons state on page load
 function initLikes() {
   const likeIcons = document.querySelectorAll('.fa-heart');
   likeIcons.forEach((icon, idx) => {
-    if(localStorage.getItem(`liked_${idx}`) === 'true') {
+    if (localStorage.getItem(`liked_${idx}`) === 'true') {
       icon.classList.add('liked');
     }
   });
@@ -177,26 +229,21 @@ function initLikes() {
 
 // Burst hearts animation
 function createBurstHearts(targetIcon) {
-  for(let i=0; i<6; i++) {
+  for (let i = 0; i < 6; i++) {
     const heart = document.createElement('div');
     heart.classList.add('burst-heart');
-    // random directions for burst
     heart.style.setProperty('--x', (Math.random() * 2 - 1).toFixed(2));
     heart.style.setProperty('--y', (Math.random() * 2 - 1).toFixed(2));
-    // Position near icon
     const rect = targetIcon.getBoundingClientRect();
     heart.style.position = 'fixed';
-    heart.style.left = `${rect.left + rect.width/2}px`;
-    heart.style.top = `${rect.top + rect.height/2}px`;
+    heart.style.left = `${rect.left + rect.width / 2}px`;
+    heart.style.top = `${rect.top + rect.height / 2}px`;
     document.body.appendChild(heart);
-
-    setTimeout(() => {
-      heart.remove();
-    }, 800);
+    setTimeout(() => heart.remove(), 800);
   }
 }
 
-// Show temporary "I 💖 this 😎" text near icon
+// Show "I 💖 this 😎" text temporarily
 function showLoveText(targetIcon) {
   const loveText = document.createElement('div');
   loveText.textContent = "I 💖 this 😎";
@@ -208,45 +255,18 @@ function showLoveText(targetIcon) {
   loveText.style.top = `${targetIcon.getBoundingClientRect().top - 20}px`;
   loveText.style.userSelect = 'none';
   document.body.appendChild(loveText);
-
-  setTimeout(() => {
-    loveText.remove();
-  }, 1500);
+  setTimeout(() => loveText.remove(), 1500);
 }
 
-// WhatsApp message function
+// WhatsApp button handler
 function sendWhatsappMessage(e, productIndex) {
   e.preventDefault();
   const productName = products[productIndex].name;
-  const message = encodeURIComponent(`Hello, I am interested in your product: "${productName}". Please provide more details.`);
-  const whatsappNumber = "+264817859603"; // Your WhatsApp number
+  const message = encodeURIComponent(`Hello Tippz, I am interested in your product: "${productName}". Please provide more details.`);
+  const whatsappNumber = "+264817859603";
   const url = `https://wa.me/${whatsappNumber}?text=${message}`;
   window.open(url, "_blank");
 }
-
-// Lightbox swipe down to close logic
-let startY = null;
-let startX = null;
-
-lightbox.addEventListener('touchstart', e => {
-  startY = e.touches[0].clientY;
-  startX = e.touches[0].clientX;
-});
-
-lightbox.addEventListener('touchmove', e => {
-  if(!startY) return;
-
-  let y = e.touches[0].clientY;
-  let x = e.touches[0].clientX;
-  let yDiff = y - startY;
-  let xDiff = x - startX;
-
-  // If mostly vertical swipe down by 50+ pixels -> close
-  if(yDiff > 50 && Math.abs(yDiff) > Math.abs(xDiff)) {
-    closeLightbox();
-    startY = null;
-  }
-});
 
 // Initialize likes on page load
 window.onload = () => {
