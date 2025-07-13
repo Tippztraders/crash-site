@@ -99,7 +99,7 @@ function renderProducts() {
       <h4>${product.name}</h4>
       <p class="price">${product.price}</p>
       <span class="condition faded-badge">${product.condition}</span>
-      <p class="status">${product.status || "In Stock"}</p>
+      <p class="status ${product.status === 'SOLD' ? 'sold' : ''}">${product.status || "In Stock"}</p> // This changes the Sold badge red 
       <div class="like-section">
         <i class="fas fa-heart" onclick="toggleLike(this, ${i})"></i>
       </div>
