@@ -109,16 +109,6 @@ function renderProducts() {
     </div>
   `).join('');
 }
-// This sets the product's availability status
-.status.sold {
-  color: red;
-  font-weight: bold;
-  background: #ffe5e5;
-  padding: 2px 6px;
-  border-radius: 4px;
-  display: inline-block;
-  text-transform: uppercase;
-}
 
 renderProducts();
 
