@@ -5,8 +5,9 @@ const products = [
     images: ["PH1.jpg"],
     name: "White Office Chair",
     oldPrice: "N$850",
-    price: "N$850",
+    price: "N$700",
     condition: "Excellent Condition"
+    saleBadge: "SALE"
   },
   {
     images: ["PH2.jpg"],
@@ -89,6 +90,7 @@ function renderProducts() {
     <div class="product-card" id="item${i + 1}">
       <div class="image-wrapper" style="position: relative;">
         <img src="${product.images[0]}" alt="${product.name}" onclick="openLightbox(${i}, 0)" />
+        ${product.saleBadge ? `<div class="sale-badge">${product.saleBadge}</div>` : ''}
         ${
           product.images.length > 1
             ? `<div class="image-dots" style="position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px;">
@@ -98,7 +100,14 @@ function renderProducts() {
         }
       </div>
       <h4>${product.name}</h4>
-      <p class="price">${product.price}</p>
+      ${
+        product.oldPrice
+          ? `<div class="price-centered">
+               <span class="old-price">Was: ${product.oldPrice}</span>
+               <span class="new-price">Now: ${product.price}</span>
+             </div>`
+          : `<p class="price">${product.price}</p>`
+      }
       <span class="condition faded-badge">${product.condition}</span>
       <p class="status ${product.status === 'SOLD' ? 'sold' : ''}">${product.status || "In Stock"}</p> 
       <div class="like-section">
@@ -113,7 +122,6 @@ function renderProducts() {
 
 renderProducts();
 
-// Globals for lightbox state
 let currentProductIndex = 0;
 let currentImageIndex = 0;
 
@@ -121,7 +129,6 @@ const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightboxImage");
 const lightboxDots = document.getElementById("lightboxDots");
 
-// Open lightbox at given product and image
 function openLightbox(productIndex, imageIndex) {
   currentProductIndex = productIndex;
   currentImageIndex = imageIndex;
@@ -129,7 +136,6 @@ function openLightbox(productIndex, imageIndex) {
   lightbox.style.display = "flex";
 }
 
-// Close lightbox, optionally scroll back to product
 function closeLightbox(scrollBack = false) {
   lightbox.style.display = "none";
   if (scrollBack) {
@@ -140,8 +146,6 @@ function closeLightbox(scrollBack = false) {
   }
 }
 
-// Update lightbox image and dots
-// Accept optional index to show a specific image
 function updateLightbox(imageIndex = null) {
   const images = products[currentProductIndex].images;
   if (imageIndex !== null) {
@@ -154,7 +158,6 @@ function updateLightbox(imageIndex = null) {
   `).join('');
 }
 
-// Swipe image left/right on mobile
 let startX = null;
 
 lightbox.addEventListener('touchstart', e => {
@@ -178,7 +181,6 @@ lightbox.addEventListener('touchmove', e => {
   }
 });
 
-// Tap anywhere outside the image to close lightbox
 lightbox.addEventListener("click", function (e) {
   const imageWrapper = document.querySelector(".lightbox-image-wrapper");
   if (!imageWrapper.contains(e.target)) {
@@ -186,7 +188,6 @@ lightbox.addEventListener("click", function (e) {
   }
 });
 
-// Keyboard arrow keys for desktop navigation and escape to close
 document.addEventListener("keydown", e => {
   if (lightbox.style.display !== "flex") return;
   const images = products[currentProductIndex].images;
@@ -203,7 +204,6 @@ document.addEventListener("keydown", e => {
   }
 });
 
-// Like button logic with localStorage and burst hearts
 function toggleLike(icon, productIndex) {
   const likedKey = `liked_${productIndex}`;
   const isLiked = localStorage.getItem(likedKey) === 'true';
@@ -219,7 +219,6 @@ function toggleLike(icon, productIndex) {
   }
 }
 
-// Initialize like buttons state on page load
 function initLikes() {
   const likeIcons = document.querySelectorAll('.fa-heart');
   likeIcons.forEach((icon, idx) => {
@@ -229,7 +228,6 @@ function initLikes() {
   });
 }
 
-// Burst hearts animation
 function createBurstHearts(targetIcon) {
   for (let i = 0; i < 6; i++) {
     const heart = document.createElement('div');
@@ -245,7 +243,6 @@ function createBurstHearts(targetIcon) {
   }
 }
 
-// Show "I 💖 this 😎" text temporarily
 function showLoveText(targetIcon) {
   const loveText = document.createElement('div');
   loveText.textContent = "I 💖 this 😎";
@@ -260,7 +257,6 @@ function showLoveText(targetIcon) {
   setTimeout(() => loveText.remove(), 1500);
 }
 
-// WhatsApp button handler
 function sendWhatsappMessage(e, productIndex) {
   e.preventDefault();
   const productName = products[productIndex].name;
@@ -270,7 +266,6 @@ function sendWhatsappMessage(e, productIndex) {
   window.open(url, "_blank");
 }
 
-// Initialize likes on page load
 window.onload = () => {
   initLikes();
 };
