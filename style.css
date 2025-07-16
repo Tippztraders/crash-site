@@ -204,6 +204,37 @@ footer {
   }
 }
 
+/* THIS IS FOR THE NEW PRICE STRIKED AND CENTERED */
+.price-centered {
+  text-align: center;
+  margin: 0.5em 0;
+}
+
+.old-price {
+  color: grey;
+  text-decoration: line-through;
+  margin-right: 0.5em;
+}
+
+.new-price {
+  color: black;
+  font-weight: bold;
+}
+
+.sale-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: red;
+  color: white;
+  font-size: 0.75em;
+  font-weight: bold;
+  padding: 3px 6px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  z-index: 2;
+}
+
 /* WHATSAPP BUTTON */
 .whatsapp-button {
   display: inline-block;
