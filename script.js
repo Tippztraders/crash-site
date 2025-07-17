@@ -7,6 +7,7 @@ const products = [
   oldPrice: "N$850",
   price: "N$700",
   condition: "Excellent Condition",
+    // status: "SOLD"
   },
   {
     images: ["PH2.jpg"],
