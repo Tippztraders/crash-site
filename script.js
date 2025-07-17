@@ -109,7 +109,7 @@ function renderProducts() {
           : `<p class="price">${product.price}</p>`
       }
       <span class="condition faded-badge">${product.condition}</span>
-      <p class="status ${product.status === 'SOLD' ? 'sold' : ''}">${product.status || "In Stock"}</p> 
+      <div class="product-card ${product.status === 'SOLD' ? 'sold-out' : ''}" id="item${i + 1}">
       <div class="like-section">
         <i class="fas fa-heart" onclick="toggleLike(this, ${i})"></i>
       </div>
