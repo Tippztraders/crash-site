@@ -14,7 +14,7 @@ const products = [
     name: "32L Samsung Microwave",
     price: "N$950",
     condition: "Pre-Loved",
-    // status: "SOLD"
+    status: “Sold – Contact us for similar items”
   },
   {
     images: ["PH3a.jpg", "PH3b.jpg"],
