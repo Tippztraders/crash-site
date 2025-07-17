@@ -6,15 +6,14 @@ const products = [
   name: "White Office Chair",
   oldPrice: "N$850",
   price: "N$700",
-  condition: "Excellent Condition",
-    // status: "SOLD"
-  },
-  {
-    images: ["PH2.jpg"],
-    name: "32L Samsung Microwave",
-    price: "N$950",
-    condition: "Pre-Loved",
-    status: “Sold – Contact us for similar items”
+  condition: "Excellent Condition"
+},
+{
+  images: ["PH2.jpg"],
+  name: "32L Samsung Microwave",
+  price: "N$950",
+  condition: "Pre-Loved",
+  status: "Sold – Contact us for similar items"
   },
   {
     images: ["PH3a.jpg", "PH3b.jpg"],
