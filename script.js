@@ -84,6 +84,7 @@ const products = [
 ];
 const productContainer = document.querySelector(".product-grid");
 
+// === Product Render Function (with Old/New Price support) ===
 function renderProducts() {
   productContainer.innerHTML = products.map((product, i) => `
     <div class="product-card" id="item${i + 1}">
@@ -99,14 +100,16 @@ function renderProducts() {
         }
       </div>
       <h4>${product.name}</h4>
+
       ${
         product.oldPrice
           ? `<div class="price-centered">
-               <span class="old-price">Was: ${product.oldPrice}</span>
-               <span class="new-price">Now: ${product.price}</span>
+               <span class="old-price" style="text-decoration: line-through; color: grey; font-size: 0.9em;">Was: ${product.oldPrice}</span>
+               <span class="new-price" style="color: black; font-weight: bold; font-size: 1.2em;">Now: ${product.price}</span>
              </div>`
           : `<p class="price">${product.price}</p>`
       }
+
       <span class="condition faded-badge">${product.condition}</span>
       <p class="status ${product.status === 'SOLD' ? 'sold' : ''}">${product.status || "In Stock"}</p> 
       <div class="like-section">
