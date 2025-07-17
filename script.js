@@ -46,7 +46,7 @@ const products = [
     condition: "Well-Maintained"
   },
   {
-    images: ["PH8.jpg"],
+    images: ["PH8.png"],
     name: "Office Chair #1",
     oldPrice: "N$650",    // When you want to show the discount, take the comment line off or put it on not to show
     price: "N$500",
