@@ -4,12 +4,12 @@ const products = [
   {
    images: ["PH1.jpg"],
   name: "White Office Chair",
-  // oldPrice: "N$850",
+  // oldPrice: "N$850", When you want to show the discount, take the comment line off
   price: "N$850",
   condition: "Excellent Condition",
   },
   {
-    images: ["PH2.jpg"],
+    images: ["PH2.png"],
     name: "32L Samsung Microwave",
     price: "N$950",
     condition: "Pre-Loved",
