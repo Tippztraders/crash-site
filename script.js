@@ -6,14 +6,14 @@ const products = [
   name: "White Office Chair",
   oldPrice: "N$850",
   price: "N$700",
-  condition: "Excellent Condition"
-},
-{
-  images: ["PH2.jpg"],
-  name: "32L Samsung Microwave",
-  price: "N$950",
-  condition: "Pre-Loved",
-  status: "Sold – Contact us for similar items"
+  condition: "Excellent Condition",
+  },
+  {
+    images: ["PH2.jpg"],
+    name: "32L Samsung Microwave",
+    price: "N$950",
+    condition: "Pre-Loved",
+    // status: "SOLD"
   },
   {
     images: ["PH3a.jpg", "PH3b.jpg"],
@@ -108,7 +108,7 @@ function renderProducts() {
           : `<p class="price">${product.price}</p>`
       }
       <span class="condition faded-badge">${product.condition}</span>
-      <div class="product-card ${product.status === 'SOLD' ? 'sold-out' : ''}" id="item${i + 1}">
+      <p class="status ${product.status === 'SOLD' ? 'sold' : ''}">${product.status || "In Stock"}</p> 
       <div class="like-section">
         <i class="fas fa-heart" onclick="toggleLike(this, ${i})"></i>
       </div>

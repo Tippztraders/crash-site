@@ -235,18 +235,6 @@ footer {
   z-index: 2;
 }
 
-/* THIS SHOWS GREYED OUT FOR SOLD ITEMS */
-.product-card.sold-out h4,
-.product-card.sold-out .price,
-.product-card.sold-out .condition,
-.product-card.sold-out .status,
-.product-card.sold-out .whatsapp-button {
-  color: grey !important;
-  opacity: 0.6;
-  pointer-events: none; /* Optional: disables WhatsApp button */
-  cursor: default;
-}
-
 /* WHATSAPP BUTTON */
 .whatsapp-button {
   display: inline-block;
