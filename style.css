@@ -235,6 +235,25 @@ footer {
   z-index: 2;
 }
 
+/* THIS FOR WHEN A PRODUCT GETS SOLD */
+.product-card.sold-out h4,
+.product-card.sold-out .price,
+.product-card.sold-out .condition {
+  color: grey !important;
+  opacity: 0.7;
+}
+
+.product-card.sold-out .status {
+  color: red !important;
+  font-weight: bold;
+}
+
+.product-card.sold-out .whatsapp-button {
+  opacity: 1; /* Fully visible */
+  pointer-events: auto; /* Fully clickable */
+  cursor: pointer;
+}
+
 /* WHATSAPP BUTTON */
 .whatsapp-button {
   display: inline-block;
